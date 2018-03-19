@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Airplane {
 
     String airplaneName;
-    List<> airplaneSeats = ArrayList<Passenger>(10);
+    List<Passenger> airplaneSeats = new ArrayList<>(10);
 
     /**
      * Airplane Constructor
      * @param airplaneName
      * @param airplaneSeats
      */
-    public Airplane(String airplaneName, List<> airplaneSeats) {
+    public Airplane(String airplaneName, List<Passenger> airplaneSeats) {
         this.airplaneName = airplaneName;
         this.airplaneSeats = airplaneSeats;
     }
@@ -27,7 +27,7 @@ public class Airplane {
 
     /**
      * Sets airplane name
-     * @return airplaneName
+     * @param airplaneName
      */
     // TODO: Redundant method? Useful when creating new Airplanes.
     public void setAirplaneName(String airplaneName) {
@@ -38,21 +38,21 @@ public class Airplane {
      * Returns list of airplaneSeats. Used to determine if the plane is fully booked or not.
      * @return airplaneSeats
      */
-    public List<> getAirplaneSeats() {
+    public List<Passenger> getAirplaneSeats() {
         return airplaneSeats;
     }
 
     /**
      * Sets list of airplaneSeats. Used to determine if the plane is fully booked or not.
-     * @return airplaneSeats
+     * @param airplaneSeats
      */
-    // TODO: Redundant method? Useful when creating new Airplanes with differing number of seats.
-    public void setAirplaneSeats(List<> airplaneSeats) {
+    // TODO: Redundant method? Useful when creating new Airplanes with different number of seats.
+    public void setAirplaneSeats(List<Passenger> airplaneSeats) {
         this.airplaneSeats = airplaneSeats;
     }
 
     @Override
     public String toString() {
-        return "Flygplan " + airplaneName + " har " + airplaneSeats + " bokade platser.";
+        return "Flygplan " + getAirplaneName() + " har " + getAirplaneSeats() + " bokade platser.";
     }
 }

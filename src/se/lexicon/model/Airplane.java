@@ -26,10 +26,10 @@ public class Airplane {
     }
 
     /**
-     * Sets airplane name
+     * Sets airplane name. Useful when creating new Airplanes.
      * @param airplaneName
      */
-    // TODO: Redundant method? Useful when creating new Airplanes.
+    // TODO: Redundant method?
     public void setAirplaneName(String airplaneName) {
         this.airplaneName = airplaneName;
     }

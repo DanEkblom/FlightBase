@@ -1,10 +1,10 @@
 package se.lexicon.model;
 
-import sun.security.krb5.internal.Ticket;
+import se.lexicon.model.TicketBusiness;
 
 public abstract class Passenger {
 
-	Ticket ticket;
+	TicketBusiness ticket;
 	String name;
 	int age;
 	String passengerId;
@@ -15,7 +15,7 @@ public abstract class Passenger {
 	String foodAllergies; // GLUTEN, LACTOS, NUTS, ETC.
 
 	// Constructor of all properties
-	public Passenger(Ticket ticket, String name, int age, String passengerId, GenderType gender, String fellowPassenger,
+	public Passenger(TicketBusiness ticket, String name, int age, String passengerId, GenderType gender, String fellowPassenger,
 			String passportNumber, String note, String foodAllergies) {
 
 		this.ticket = ticket;
@@ -30,7 +30,7 @@ public abstract class Passenger {
 	}
 
 	// Minimum Constructor
-	public Passenger(Ticket ticket, String name, String passengerId, GenderType gender) {
+	public Passenger(TicketBusiness ticket, String name, String passengerId, GenderType gender) {
 
 		this.ticket = ticket;
 		this.name = name;
@@ -58,7 +58,7 @@ public abstract class Passenger {
 	public String getName() {
 		return name;
 	}
-	public Ticket getTicket() {
+	public TicketBusiness getTicket() {
 		return ticket;
 	}
 	public int getAge() {
@@ -98,7 +98,7 @@ public abstract class Passenger {
 	public void setGender(GenderType gender) {
 		this.gender = gender;
 	}
-	public void setTicket(Ticket ticket) {
+	public void setTicket(TicketBusiness ticket) {
 		this.ticket = ticket;
 	}
 	public void setFellowPassenger(String fellowPassenger) {
@@ -153,7 +153,6 @@ public abstract class Passenger {
 
 		return s.toString();
 		
-	}
-	
+	}//toString
 	
 }

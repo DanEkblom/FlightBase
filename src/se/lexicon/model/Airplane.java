@@ -7,7 +7,8 @@ public class Airplane {
 
     String airplaneName;
     List<Passenger> airplaneSeats = new ArrayList<Passenger>();
-
+    List<Seat> seats = new ArrayList<Seat>(10);
+    
     /**
      * Airplane Constructor
      * @param airplaneName Airplane unique identifier
@@ -70,4 +71,8 @@ public class Airplane {
         return sb.toString();
     }
 
+    public void addPassenger(Passenger passenger) {
+    	airplaneSeats.add(passenger);
+    }
+    
 }

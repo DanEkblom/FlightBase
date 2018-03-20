@@ -8,13 +8,21 @@ public class TicketBusiness implements TicketInterface {
     private String ticketType;
     private int ticketPrice;
     private Passenger passenger;
+    private int ticketNr;
 
-    public TicketBusiness(Passenger passenger) {
+    public TicketBusiness(Passenger passenger, Seat seat, Menu menu) {
         this.ticketType = "Business";
         this.passenger = passenger;
         ticketPrice = 20000;
     }
 
+    public TicketBusiness(Passenger passenger, Seat seat) {
+        this.ticketType = "Business";
+        this.passenger = passenger;
+        ticketPrice = 20000;
+    }
+
+    
     /**
      * Sets the ticket type
      * @param ticketType Business class ticket
@@ -44,5 +52,10 @@ public class TicketBusiness implements TicketInterface {
     	
         //System.out.println(sb);
         return sb.toString();
+    }
+    
+    //inre klass för att kunna skapa mock konstruktor
+    class Menu{
+    	
     }
 }

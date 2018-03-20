@@ -33,8 +33,9 @@ public class Main {
     	
 //        SystemUI ui = new SystemUI();
 //        ui.start();
-    */
+    
     	System.out.println(FoodItem.chicken.toString());
-
+*/
+    	new SystemUI().start();
     }
 }

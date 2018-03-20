@@ -8,26 +8,27 @@ import se.lexicon.model.Airplane;
 import se.lexicon.model.BusinessPassenger;
 import se.lexicon.model.EconomyPassenger;
 import se.lexicon.model.FoodItem;
+import se.lexicon.model.Menu;
 import se.lexicon.model.Passenger;
 import se.lexicon.model.Seat;
-import se.lexicon.model.TicketBusiness;
+import se.lexicon.model.BusinessTicket;
 
 public class SystemUI {
 	Scanner scanner = new Scanner(System.in);
 	String food, beverage, name, option;
 	final String BUSINESS = "1";
 	final String ECONOMY = "2";
-	
+
 	Airplane airplane = new Airplane("Boeing A320");
-	
-	List<TicketBusiness> tickets = new ArrayList<TicketBusiness>();
-	
+
+	List<BusinessTicket> tickets = new ArrayList<BusinessTicket>();
+
 	// Start the applications UI
 	public void start() {
 
 		// Loop-condition
 		boolean isRunning = true;
-		
+
 		// Try-with-resources to auto-close scanner on error or exit
 		try {
 
@@ -45,59 +46,63 @@ public class SystemUI {
 					
 					option = scanner.next().trim();
 					
+
+
 					switch(option) {
 					case "0":
 						isRunning = false;
 						break;
-						
+
 					case "1":
-						
-							//if( plane.businessSeatsAvailable() ){
 						
 						    newPassenger(BUSINESS);
 						
 							food = pickBusinessFood();
 							beverage = pickBusinessBeverage();
+
+						if( airplane.businessSeatsAvailable() ){
+
+							newBusinessTicket();
 							
+
 							//TODO: gör en snygg lista som visar vad kunden har valt som
 							//han kan bekräfta
-							
+
 							//tickets.add(new Ticket ())
-							
-						/*
+
 						}
 						else{
-							offerOtherClass();;
+							offerOtherTicket();
 						}
-						*/
+
 						break;
-						
+
 					case "2":
-						/*
-						if( plane.economySeatsAvailable(){*/
 						
 							newPassenger(ECONOMY);
 							food = pickEconomyFood();
 							beverage = pickEconomyBeverage();
 						
-							/*pickEconomyMenu();
 						
+						if( plane.economySeatsAvailable(){
+
+							pickEconomyMenu();
+
 						}
-						*/
 						break;
-					
+
 					default:
 						System.out.println(option + " är ett ogiltigt val. Var god försök igen.");
 
 					}
-
+					if (isRunning) tickets.add( newTicket(newPassenger()) );
 				} catch (Exception e) {
 					System.out.println("Exception caught in inner try : " + e.getMessage());
 
 				}//catch
-				
-				
-				tickets.add( newTicket(newPassenger()) );
+
+
+
 
 			} while (isRunning);
 
@@ -122,18 +127,27 @@ public class SystemUI {
 		System.out.println("                                                  _/____/                 ");
 	}
 
-	public String pickBusinessFood() {
+	public FoodItem pickBusinessFood() {
+		FoodItem foodItem = null;
 		System.out.println("Vänligen välj en huvudrätt ur business-menyn");
 		System.out.println("1:"+FoodItem.escargo.toString());
 		System.out.println("2:"+FoodItem.frogLegs.toString());
-		return scanner.next().trim();
+
+
+		switch(option) {
+		case "1": foodItem = FoodItem.escargo;
+		case "2": foodItem = FoodItem.frogLegs;
+		default : System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
+		}
+
+		return foodItem;
 	}
-	
-	public String pickBusinessBeverage() {
+
+	public FoodItem pickBusinessBeverage() {
+		FoodItem foodItem = null;
 		System.out.println("Vänligen välj något uppfriskande ur vår exklusiva dryckesmeny:");
 		System.out.println("1:" + FoodItem.wine.toString());
 		System.out.println("2:" + FoodItem.beer.toString());
-		return scanner.next().trim();
 		
 	}
 
@@ -155,6 +169,18 @@ public class SystemUI {
 
 	
 	public Passenger newPassenger(String option) {
+
+		option = scanner.next();
+		switch(option) {
+		case "1": foodItem = FoodItem.wine;
+		case "2": foodItem = FoodItem.beer;
+		default : System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
+		}
+
+		return foodItem;
+	}
+
+	public Passenger newPassenger() {
 		System.out.println("Vänligen ange namn:");
 		name = scanner.next().trim();
 		
@@ -165,9 +191,20 @@ public class SystemUI {
 			return new EconomyPassenger(name);
 		}
 	}
-	
-	public TicketBusiness newTicket(Passenger passenger) {
-		return new TicketBusiness( passenger, new Seat(airplane, 1));
+
+	public BusinessTicket newTicket(Passenger passenger) {
+		return new BusinessTicket( passenger, new Seat(airplane, 1));
+	}
+
+	public Menu newMenu() {
+		return null;
 	}
 	
+	public BusinessTicket newBusinessTicket() {
+		return new BusinessTicket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) );
+	}
+	
+	public void offerOtherTicket() {
+		
+	}
 }

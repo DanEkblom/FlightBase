@@ -1,22 +1,22 @@
 package se.lexicon.model;
 
 /**
- * Public class for TicketBusiness.
+ * Public class for BusinessTicket.
  */
-public class TicketBusiness implements TicketInterface {
+public class BusinessTicket extends Ticket {
 
     private String ticketType;
     private int ticketPrice;
     private Passenger passenger;
     private int ticketNr;
 
-    public TicketBusiness(Passenger passenger, Seat seat, Menu menu) {
+    public BusinessTicket(Passenger passenger, Seat seat, Menu menu) {
         this.ticketType = "Business";
         this.passenger = passenger;
         ticketPrice = 20000;
     }
 
-    public TicketBusiness(Passenger passenger, Seat seat) {
+    public BusinessTicket(Passenger passenger, Menu menu) {
         this.ticketType = "Business";
         this.passenger = passenger;
         ticketPrice = 20000;
@@ -54,8 +54,4 @@ public class TicketBusiness implements TicketInterface {
         return sb.toString();
     }
     
-    //inre klass för att kunna skapa mock konstruktor
-    class Menu{
-    	
-    }
 }

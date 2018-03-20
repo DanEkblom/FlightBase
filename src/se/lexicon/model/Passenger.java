@@ -1,10 +1,10 @@
 package se.lexicon.model;
 
-import se.lexicon.model.TicketBusiness;
+import se.lexicon.model.BusinessTicket;
 
 public abstract class Passenger {
 
-	TicketBusiness ticket;
+	BusinessTicket ticket;
 	String name;
 	int age;
 	int passengerId;
@@ -62,7 +62,7 @@ public abstract class Passenger {
 	public String getName() {
 		return name;
 	}
-	public TicketBusiness getTicket() {
+	public BusinessTicket getTicket() {
 		return ticket;
 	}
 	public int getAge() {
@@ -102,7 +102,7 @@ public abstract class Passenger {
 	public void setGender(GenderType gender) {
 		this.gender = gender;
 	}
-	public void setTicket(TicketBusiness ticket) {
+	public void setTicket(BusinessTicket ticket) {
 		this.ticket = ticket;
 	}
 	public void setFellowPassenger(String fellowPassenger) {

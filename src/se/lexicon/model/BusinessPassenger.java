@@ -1,6 +1,6 @@
 package se.lexicon.model;
 
-import se.lexicon.model.TicketBusiness;
+import se.lexicon.model.BusinessTicket;
 
 public class BusinessPassenger extends Passenger {
 

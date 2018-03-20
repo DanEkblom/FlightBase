@@ -6,14 +6,16 @@ package se.lexicon.model;
 public class TicketEconomy extends Ticket {
 
     private String ticketType;
+    private int ticketPrice;
 
     public TicketEconomy() {
          this.ticketType = "Economy";
+         ticketPrice = 5000;
     }
 
     /**
      * Sets the ticket type
-     * @param ticketType
+     * @param ticketType Economy class ticket
      * @return ticketType;
      */
     public String setTicketType(String ticketType) {
@@ -22,7 +24,6 @@ public class TicketEconomy extends Ticket {
 
     /**
      * Gets the ticket type
-     * @param ticketType
      * @return ticketType;
      */
     public String getTicketType(String ticketType) {

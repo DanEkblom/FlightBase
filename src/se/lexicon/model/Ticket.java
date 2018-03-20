@@ -6,6 +6,7 @@ package se.lexicon.model;
 abstract class Ticket {
 
     private String ticketType;
+    private int ticketPrice;
 
     /**
      * Sets the ticket type

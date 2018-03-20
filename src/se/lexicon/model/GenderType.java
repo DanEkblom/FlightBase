@@ -1,5 +1,5 @@
 package se.lexicon.model;
 
 public enum GenderType {
-	FEMALE, MALE
+	FEMALE, MALE, UNKNOWN
 }

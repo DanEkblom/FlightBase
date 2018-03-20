@@ -14,41 +14,38 @@ public abstract class Passenger {
 	String note;
 	String foodAllergies; // GLUTEN, LACTOS, NUTS, ETC.
 
-	// Constructor for all properties
+	// Constructor of all properties
 	public Passenger(Ticket ticket, String name, int age, String passengerId, GenderType gender, String fellowPassenger,
 			String passportNumber, String note, String foodAllergies) {
 
 		this.ticket = ticket;
-		this.name = name;
+		this.name = Utilities.fixNameInput(name);
 		this.age = age;
 		this.passengerId = passengerId;
 		this.gender = gender;
-		this.fellowPassenger = fellowPassenger;
+		this.fellowPassenger = Utilities.fixNameInput(fellowPassenger);
 		this.passportNumber = passportNumber;
-		this.note = note;
-		this.foodAllergies = foodAllergies;
+		this.note = Utilities.fixTextInput(note, false);
+		this.foodAllergies = Utilities.fixTextInput(foodAllergies, false);
 	}
 
 	// Minimum Constructor
-//	public Passenger(Ticket ticket, String name, int age, String passengerId, GenderType gender, String fellowPassenger,
-//			String passportNumber, String note, String foodAllergies) {
-//
-//		this.ticket = ticket;
-//		this.name = name;
-//		this.age = age;
-//		this.passengerId = passengerId;
-//		this.gender = gender;
-//		this.fellowPassenger = fellowPassenger;
-//		this.passportNumber = passportNumber;
-//		this.note = note;
-//		this.foodAllergies = foodAllergies;
-//	}
-	
-	
+	public Passenger(Ticket ticket, String name, String passengerId, GenderType gender) {
+
+		this.ticket = ticket;
+		this.name = name;
+		this.passengerId = passengerId;
+		this.gender = gender;
+		
+		this.fellowPassenger = "";
+		this.passportNumber = "";
+		this.note = "";
+		this.foodAllergies = "";
+	}
 	
 	// Özgurs lekstuga
 	public Passenger(String name, String passengerId) {
-		this.name = name;
+		this.name = Utilities.fixNameInput(name);
 		this.passengerId = passengerId;
 	}
 
@@ -93,7 +90,7 @@ public abstract class Passenger {
 	 */
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = Utilities.fixNameInput(name);
 	}
 	public void setAge(int age) {
 		this.age = age;
@@ -105,16 +102,16 @@ public abstract class Passenger {
 		this.ticket = ticket;
 	}
 	public void setFellowPassenger(String fellowPassenger) {
-		this.fellowPassenger = fellowPassenger;
+		this.fellowPassenger = Utilities.fixNameInput(fellowPassenger);
 	}
 	public void setPassportNumber(String passportNumber) {
 		this.passportNumber = passportNumber;
 	}
 	public void setNote(String note) {
-		this.note = note;
+		this.note = Utilities.fixTextInput(note, false);
 	}
 	public void setFoodAllergies(String foodAllergies) {
-		this.foodAllergies = foodAllergies;
+		this.foodAllergies = Utilities.fixTextInput(foodAllergies, false);
 	}
 
 
@@ -125,6 +122,35 @@ public abstract class Passenger {
 		s.append(name);
 		s.append("\nPassagerID: ");
 		s.append(passengerId);
+		
+		if (!passportNumber.equals("")){
+			s.append("/nPassnummer: ");
+			s.append(passportNumber);			
+		}
+		
+		if (age != 0) {
+			s.append("/nÅlder: ");
+			s.append(age);
+		}
+		
+		s.append("/nKön: ");
+		s.append(Utilities.genderToSwedish(gender));
+		
+		if (!fellowPassenger.equals("")) {
+			s.append("/nMedpassagerare: ");
+			s.append(fellowPassenger);
+		}
+		
+		if (!foodAllergies.equals("")) {
+			s.append("/nMatallergier: ");
+			s.append(foodAllergies);
+		}
+		
+		if (!note.equals("")) {
+			s.append("/nNote: ");
+			s.append(note);
+		}
+
 		return s.toString();
 		
 	}

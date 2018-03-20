@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import se.lexicon.model.FoodItem;
 import se.lexicon.ui.SystemUI;
 
 public class Main {
@@ -29,8 +30,10 @@ public class Main {
     	example.forEach(System.out::println);
     	
     	
+    	
 //        SystemUI ui = new SystemUI();
 //        ui.start();
+    	System.out.println(FoodItem.chicken.toString());
 
     }
 }

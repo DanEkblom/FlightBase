@@ -43,7 +43,7 @@ public class SystemUI {
 							+ "2: Flyga Economy class\n"
 							+ "0: Avsluta");
 					
-					option = scanner.next();
+					option = scanner.next().trim();
 					
 					switch(option) {
 					case "0":
@@ -54,6 +54,7 @@ public class SystemUI {
 						
 							//if( plane.businessSeatsAvailable() ){
 						
+						    newPassenger(BUSINESS);
 						
 							food = pickBusinessFood();
 							beverage = pickBusinessBeverage();
@@ -66,16 +67,20 @@ public class SystemUI {
 						/*
 						}
 						else{
-							offerOtherClass();
+							offerOtherClass();;
 						}
 						*/
 						break;
 						
 					case "2":
 						/*
-						if( plane.economySeatsAvailable(){
+						if( plane.economySeatsAvailable(){*/
 						
-							pickEconomyMenu();
+							newPassenger(ECONOMY);
+							food = pickEconomyFood();
+							beverage = pickEconomyBeverage();
+						
+							/*pickEconomyMenu();
 						
 						}
 						*/
@@ -121,26 +126,43 @@ public class SystemUI {
 		System.out.println("Vänligen välj en huvudrätt ur business-menyn");
 		System.out.println("1:"+FoodItem.escargo.toString());
 		System.out.println("2:"+FoodItem.frogLegs.toString());
-		return scanner.next();
+		return scanner.next().trim();
 	}
 	
 	public String pickBusinessBeverage() {
 		System.out.println("Vänligen välj något uppfriskande ur vår exklusiva dryckesmeny:");
 		System.out.println("1:" + FoodItem.wine.toString());
 		System.out.println("2:" + FoodItem.beer.toString());
-		return scanner.next();
+		return scanner.next().trim();
 		
 	}
+
+	public String pickEconomyFood() {
+		System.out.println("Vänligen välj en huvudrätt ur economy-menyn");
+		//TODO Özgür får välja sina favoriter
+		System.out.println("1:"+FoodItem.escargo.toString());
+		System.out.println("2:"+FoodItem.frogLegs.toString());
+		return scanner.next().trim();
+	}
 	
-	public Passenger newPassenger() {
+	public String pickEconomyBeverage() {
+		System.out.println("Vänligen välj något uppfriskande ur vår dryckesmeny:");
+		//TODO Özgür får välja sina favoriter
+		System.out.println("1:" + FoodItem.wine.toString());
+		System.out.println("2:" + FoodItem.beer.toString());
+		return scanner.next().trim();	
+	}
+
+	
+	public Passenger newPassenger(String option) {
 		System.out.println("Vänligen ange namn:");
-		name = scanner.next();
-		//TODO metod som genererar unikt newPAssengerID()
+		name = scanner.next().trim();
+		
 		if (option.trim().equals(BUSINESS) ) {
-			return new BusinessPassenger(name, "?"); 
+			return new BusinessPassenger(name); 
 		}
 		else {
-			return new EconomyPassenger(name, "?");
+			return new EconomyPassenger(name);
 		}
 	}
 	

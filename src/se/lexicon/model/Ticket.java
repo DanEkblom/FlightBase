@@ -6,16 +6,21 @@ package se.lexicon.model;
 public abstract class Ticket {
 
 	private Menu menu;
+	private Passenger passenger;
+	private int ticketNumber;
+	private static int allTicketNumbers = 0;
 	
-	public Ticket(Menu menu) {
+	public Ticket(Passenger passenger, Menu menu) {
+		this.passenger = passenger;
 		this.menu = menu;
+		this.ticketNumber = ++allTicketNumbers;
 	}
-	
+
     /**
      * Sets the ticket type
      * @param ticketType Type of ticket
      * @return ticketType;
-     */
+     //when will this be used?
     public String setTicketType(String ticketType) {
     	return null;
     }
@@ -29,7 +34,6 @@ public abstract class Ticket {
     	return this.getClass().getName();
     }
 
-    public String toString() {
-    	return null;
-    }
+    public abstract String toString();
+    
 }

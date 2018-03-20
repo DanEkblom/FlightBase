@@ -1,15 +1,15 @@
 package se.lexicon.model;
 
 /**
- * Public class for TicketEconomy.
+ * Public class for EconomyTicket.
  */
-public class TicketEconomy extends Ticket {
+public class EconomyTicket extends Ticket {
 
     private String ticketType;
     private int ticketPrice;
     private Passenger passenger;
 
-    public TicketEconomy(Passenger passenger) {
+    public EconomyTicket(Passenger passenger) {
          this.ticketType = "Economy";
          this.passenger = passenger;
          ticketPrice = 5000;

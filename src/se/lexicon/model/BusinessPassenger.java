@@ -1,18 +1,18 @@
 package se.lexicon.model;
 
-import se.lexicon.model.TicketBusiness;
+import se.lexicon.model.BusinessTicket;
 
 public class BusinessPassenger extends Passenger {
 
 	// Constructor of all properties
-	public BusinessPassenger(TicketBusiness ticket, String name, int age, String passengerId, GenderType gender, String fellowPassenger,
+	public BusinessPassenger(BusinessTicket ticket, String name, int age, String passengerId, GenderType gender, String fellowPassenger,
 			String passportNumber, String note, String foodAllergies) {
 
 		super(ticket, name, age, passengerId, gender, fellowPassenger, passportNumber, note, foodAllergies);
 	}
 	
 	// Minimum Constructor
-	public BusinessPassenger(TicketBusiness ticket, String name, String passengerId, GenderType gender) {
+	public BusinessPassenger(BusinessTicket ticket, String name, String passengerId, GenderType gender) {
 		super(ticket, name, passengerId, gender);
 	}
 

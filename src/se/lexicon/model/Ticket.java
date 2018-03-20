@@ -5,6 +5,12 @@ package se.lexicon.model;
  */
 public abstract class Ticket {
 
+	private Menu menu;
+	
+	public Ticket(Menu menu) {
+		this.menu = menu;
+	}
+	
     /**
      * Sets the ticket type
      * @param ticketType Type of ticket
@@ -19,8 +25,8 @@ public abstract class Ticket {
      * @param ticketType Type of ticket
      * @return ticketType;
      */
-    public String getTicketType(String ticketType) {
-    	return null;
+    public String getTicketType() {
+    	return this.getClass().getName();
     }
 
     public String toString() {

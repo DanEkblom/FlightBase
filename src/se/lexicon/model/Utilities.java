@@ -3,7 +3,7 @@ package se.lexicon.model;
 /*
  *  General static methods
  */
-public class Utilities {
+public abstract class Utilities {
 
 	/*
 	 * —————————————————————————————

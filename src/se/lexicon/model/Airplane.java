@@ -6,7 +6,7 @@ import java.util.List;
 public class Airplane {
 
     String airplaneName;
-    List<Passenger> airplaneSeats = new ArrayList<>(10);
+    List<Passenger> airplaneSeats = new ArrayList<Passenger>();
 
     /**
      * Airplane Constructor
@@ -14,6 +14,10 @@ public class Airplane {
      * @param airplaneSeats Total number of seats available
      */
 
+    public Airplane(String airplaneName) {
+       this.airplaneName = airplaneName;
+    }
+    
     public Airplane(String airplaneName, List<Passenger> airplaneSeats) {
         this.airplaneName = airplaneName;
         this.airplaneSeats = airplaneSeats;
@@ -55,14 +59,15 @@ public class Airplane {
 
     @Override
     public String toString() {
-        return "Flygplan " + getAirplaneName() + " har " + getAirplaneSeats() + " bokade platser.";
+        //return "Flygplan " + airplaneName + " har " + airplaneSeats.size() + " bokade platser.";
+        StringBuilder sb = new StringBuilder("Flygplan ");
+    	sb.append(airplaneName);
+    	sb.append(" har ");
+    	sb.append(airplaneSeats.size());
+    	sb.append(" bokade platser.");
+    	
+        //System.out.println(sb);
+        return sb.toString();
     }
-
-    class Passenger{
-
-
-
-    }
-
 
 }

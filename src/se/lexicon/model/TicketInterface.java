@@ -7,15 +7,17 @@ interface TicketInterface {
 
     /**
      * Sets the ticket type
-     * @param ticketType
+     * @param ticketType Type of ticket
      * @return ticketType;
      */
-    abstract String setTicketType(String ticketType);
+    String setTicketType(String ticketType);
 
     /**
      * Gets the ticket type
-     * @param ticketType
+     * @param ticketType Type of ticket
      * @return ticketType;
      */
-    abstract String getTicketType(String ticketType);
+    String getTicketType(String ticketType);
+
+    String toString();
 }

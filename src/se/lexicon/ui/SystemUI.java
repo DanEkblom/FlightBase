@@ -10,6 +10,8 @@ public class SystemUI {
 		// Loop-condition
 		boolean isRunning = true;
 
+		String option;
+		
 		// Try-with-resources to auto-close scanner on error or exit
 		try(Scanner scanner = new Scanner(System.in)) {
 
@@ -19,28 +21,50 @@ public class SystemUI {
 				// Inner loop error handling
 				try {
 
-					System.out.println("User input : ");
-					String keyboard = scanner.next();
-
-					switch (keyboard) {
-
-						case "0":
-							System.out.println("Exiting program...");
-							isRunning = false;
-							break;
-
-						default:
-							System.out.println(keyboard + " is not a valid option. Please try again.");
+					printSplash();
+					System.out.println("Hej och välkommen! Vad vill du göra?\n"
+							+ "1: Flyga Buissness Class\n"
+							+ "2: Flyga Economy class\n"
+							+ "0: Avsluta");
+					
+					option = scanner.next();
+					
+					switch(option) {
+					case "0":
+						isRunning = false;
+						break;
+						
+					case "1":
+						/*
+						if( plane.buisnessSeatsAvailable() ){
+						
+							pickBuisnessMenu();
+						
+						}
+						else{
+							offerOtherClass();
+						}
+						*/
+						break;
+						
+					case "2":
+						/*
+						if( plane.economySeatsAvailable(){
+						
+							pickEconomyMenu();
+						
+						}
+						*/
+					
+					default:
+						System.out.println(option + " är ett ogiltigt val. Var god försök igen.");
 
 					}
-
-					// Catch any and all program-specific exceptions here to de-clutter your switch-case
-					// in case of checked and/or custom exceptions.
 
 				} catch (Exception e) {
 					System.out.println("Exception caught in inner try : " + e.getMessage());
 
-				}
+				}//catch
 
 			} while (isRunning);
 
@@ -56,4 +80,17 @@ public class SystemUI {
 
 	}
 
+	public void printSplash() {
+		System.out.println(" _________________________          _____                                 ");
+		System.out.println(" |                         \\          \\   \\__      _____               ");
+		System.out.println(" | Tack för att du flyger   \\__________\\   \\/_______\\___\\_____________ ");
+		System.out.println(" | med Vida Vingar AB       /          < /_/   ..................... * `-. ");
+		System.out.println(" |_________________________/            `-----------,----,--------------- ");
+		System.out.println("                                                  _/____/                 ");
+	}
+
+	public void pickBuisnessMenu() {
+		System.out.println("Vänligen välj en huvudrätt ur Buisness-menyn");
+	}
+	
 }

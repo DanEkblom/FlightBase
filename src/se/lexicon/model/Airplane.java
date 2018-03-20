@@ -9,8 +9,8 @@ public class Airplane {
 
     /**
      * Airplane Constructor
-     * @param airplaneName
-     * @param airplaneSeats
+     * @param airplaneName Airplane unique identifier
+     * @param airplaneSeats Total number of seats available
      */
     public Airplane(String airplaneName, List<Passenger> airplaneSeats) {
         this.airplaneName = airplaneName;
@@ -27,7 +27,7 @@ public class Airplane {
 
     /**
      * Sets airplane name. Useful when creating new Airplanes.
-     * @param airplaneName
+     * @param airplaneName Airplane name
      */
     // TODO: Redundant method?
     public void setAirplaneName(String airplaneName) {
@@ -44,7 +44,7 @@ public class Airplane {
 
     /**
      * Sets list of airplaneSeats. Used to determine if the plane is fully booked or not.
-     * @param airplaneSeats
+     * @param airplaneSeats Number of airplane seats
      */
     // TODO: Redundant method? Useful when creating new Airplanes with different number of seats.
     public void setAirplaneSeats(List<Passenger> airplaneSeats) {

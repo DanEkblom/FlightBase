@@ -7,9 +7,11 @@ public class TicketBusiness implements TicketInterface {
 
     private String ticketType;
     private int ticketPrice;
+    private Passenger passenger;
 
-    public TicketBusiness() {
+    public TicketBusiness(Passenger passenger) {
         this.ticketType = "Business";
+        this.passenger = passenger;
         ticketPrice = 20000;
     }
 
@@ -28,5 +30,19 @@ public class TicketBusiness implements TicketInterface {
      */
     public String getTicketType(String ticketType) {
         return this.ticketType;
+    }
+
+    @Override
+    public String toString() {
+    	StringBuilder sb = new StringBuilder("Passagerare ");
+    	sb.append(this.passenger.getName());
+    	sb.append(" har bokat en ");
+    	sb.append(ticketType);
+    	sb.append("-biljett för ");
+    	sb.append(ticketPrice);
+    	sb.append(":-.");
+    	
+        //System.out.println(sb);
+        return sb.toString();
     }
 }

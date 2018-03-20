@@ -8,6 +8,7 @@ import se.lexicon.model.Airplane;
 import se.lexicon.model.BusinessPassenger;
 import se.lexicon.model.EconomyPassenger;
 import se.lexicon.model.FoodItem;
+import se.lexicon.model.Menu;
 import se.lexicon.model.Passenger;
 import se.lexicon.model.Seat;
 import se.lexicon.model.TicketBusiness;
@@ -55,8 +56,8 @@ public class SystemUI {
 							//if( plane.businessSeatsAvailable() ){
 						
 						
-							food = pickBusinessFood();
-							beverage = pickBusinessBeverage();
+							pickBusinessFood();
+							pickBusinessBeverage();
 							
 							//TODO: gör en snygg lista som visar vad kunden har valt som
 							//han kan bekräfta
@@ -85,14 +86,14 @@ public class SystemUI {
 						System.out.println(option + " är ett ogiltigt val. Var god försök igen.");
 
 					}
-
+					if (isRunning) tickets.add( newTicket(newPassenger()) );
 				} catch (Exception e) {
 					System.out.println("Exception caught in inner try : " + e.getMessage());
 
 				}//catch
 				
 				
-				tickets.add( newTicket(newPassenger()) );
+				
 
 			} while (isRunning);
 
@@ -117,19 +118,37 @@ public class SystemUI {
 		System.out.println("                                                  _/____/                 ");
 	}
 
-	public String pickBusinessFood() {
+	public FoodItem pickBusinessFood() {
+		FoodItem foodItem = null;
 		System.out.println("Vänligen välj en huvudrätt ur business-menyn");
 		System.out.println("1:"+FoodItem.escargo.toString());
 		System.out.println("2:"+FoodItem.frogLegs.toString());
-		return scanner.next();
+		
+		option = scanner.next();
+		
+		switch(option) {
+		case "1": foodItem = FoodItem.escargo;
+		case "2": foodItem = FoodItem.frogLegs;
+		default : System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
+		}
+		
+		return foodItem;
 	}
 	
-	public String pickBusinessBeverage() {
+	public FoodItem pickBusinessBeverage() {
+		FoodItem foodItem = null;
 		System.out.println("Vänligen välj något uppfriskande ur vår exklusiva dryckesmeny:");
 		System.out.println("1:" + FoodItem.wine.toString());
 		System.out.println("2:" + FoodItem.beer.toString());
-		return scanner.next();
 		
+		option = scanner.next();
+		switch(option) {
+		case "1": foodItem = FoodItem.wine;
+		case "2": foodItem = FoodItem.beer;
+		default : System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
+		}
+		
+		return foodItem;
 	}
 	
 	public Passenger newPassenger() {
@@ -148,4 +167,7 @@ public class SystemUI {
 		return new TicketBusiness( passenger, new Seat(airplane, 1));
 	}
 	
+	public Menu newMenu() {
+		return null;
+	}
 }

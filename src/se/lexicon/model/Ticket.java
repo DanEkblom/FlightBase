@@ -3,10 +3,7 @@ package se.lexicon.model;
 /**
  * Abstract class for Ticket. Provides a base/contract for underlying classes (Business and Economy).
  */
-abstract class Ticket {
-
-    private String ticketType;
-    private int ticketPrice;
+interface TicketInterface {
 
     /**
      * Sets the ticket type

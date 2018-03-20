@@ -1,6 +1,7 @@
 package se.lexicon.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Airplane {
 
@@ -12,6 +13,7 @@ public class Airplane {
      * @param airplaneName Airplane unique identifier
      * @param airplaneSeats Total number of seats available
      */
+
     public Airplane(String airplaneName, List<Passenger> airplaneSeats) {
         this.airplaneName = airplaneName;
         this.airplaneSeats = airplaneSeats;
@@ -55,4 +57,12 @@ public class Airplane {
     public String toString() {
         return "Flygplan " + getAirplaneName() + " har " + getAirplaneSeats() + " bokade platser.";
     }
+
+    class Passenger{
+
+
+
+    }
+
+
 }

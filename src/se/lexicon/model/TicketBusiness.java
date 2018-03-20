@@ -3,7 +3,7 @@ package se.lexicon.model;
 /**
  * Public class for TicketBusiness.
  */
-public class TicketBusiness extends Ticket {
+public class TicketBusiness implements TicketInterface {
 
     private String ticketType;
     private int ticketPrice;

@@ -10,21 +10,21 @@ import se.lexicon.ui.SystemUI;
 public class Main {
 
     public static void main(String[] args) {
-    	
+    /*
     	List<String> example = new ArrayList<>();
     	example.add("Ett");
-    	example.add("Två");
+    	example.add("Tvï¿½");
     	example.add("Tre");
     	example.add("Fyra");
     	
 //    	for(String text : example) {
-//    		if(text.equalsIgnoreCase("två")) example.remove(text);
+//    		if(text.equalsIgnoreCase("tvï¿½")) example.remove(text);
 //    	}
     	
     	Iterator<String> it = example.iterator();
     	while(it.hasNext()) {
     		String current = it.next();
-    		if(current.equalsIgnoreCase("två")) it.remove();
+    		if(current.equalsIgnoreCase("tvï¿½")) it.remove();
     	}
     	
     	example.forEach(System.out::println);
@@ -33,6 +33,7 @@ public class Main {
     	
 //        SystemUI ui = new SystemUI();
 //        ui.start();
+    */
     	System.out.println(FoodItem.chicken.toString());
 
     }

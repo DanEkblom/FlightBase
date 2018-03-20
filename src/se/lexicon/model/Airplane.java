@@ -7,7 +7,6 @@ public class Airplane {
 
     String airplaneName;
     List<Passenger> airplaneSeats = new ArrayList<Passenger>();
-    List<Seat> seats = new ArrayList<Seat>(10);
     
     /**
      * Airplane Constructor
@@ -75,4 +74,29 @@ public class Airplane {
     	airplaneSeats.add(passenger);
     }
     
+    public boolean businessSeatsAvailable() {
+		int businessPassengers = 0;
+    	
+    	for(Passenger p : airplaneSeats) {
+			if(p instanceof BusinessPassenger) {
+				businessPassengers++;
+			}
+		}
+    	if(businessPassengers < 5) return true;
+    	
+    	else return false;
+    }
+    
+    public boolean economySeatsAvailable() {
+		int economyPassengers = 0;
+    	
+    	for(Passenger p : airplaneSeats) {
+			if(p instanceof BusinessPassenger) {
+				economyPassengers++;
+			}
+		}
+    	if(economyPassengers < 5) return true;
+    	
+    	else return false;
+    }//economySeatsAvailable
 }

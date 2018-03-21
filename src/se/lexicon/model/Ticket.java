@@ -7,6 +7,8 @@ public abstract class Ticket {
 
 	protected Menu menu;
 	protected Passenger passenger;
+	protected int ticketNumber;
+	protected static int allTicketNumbers = 0;
 	protected int price;
 	protected String ticketType;
 	
@@ -14,13 +16,14 @@ public abstract class Ticket {
 		this.passenger = passenger;
 		this.menu = menu;
 		this.price = price;
+		ticketNumber = ++allTicketNumbers;
 	}
-	
+
     /**
      * Sets the ticket type
      * @param ticketType Type of ticket
      * @return ticketType;
-     */
+     //when will this be used?
     public String setTicketType(String ticketType) {
     	return null;
     }
@@ -34,7 +37,6 @@ public abstract class Ticket {
     	return this.getClass().getName();
     }
 
-    public String toString() {
-    	return null;
-    }
+    public abstract String toString();
+    
 }

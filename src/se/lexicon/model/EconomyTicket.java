@@ -7,13 +7,12 @@ public class EconomyTicket extends Ticket {
 
     private String ticketType;
 
-
     public EconomyTicket(Passenger passenger, Menu menu, int price) {
     	super(passenger, menu, price); 
     	this.ticketType = "Economy";
          price = 5000;
     }
-
+    
     /**
      * Sets the ticket type
      * @param ticketType Economy class ticket
@@ -26,11 +25,12 @@ public class EconomyTicket extends Ticket {
     /**
      * Gets the ticket type
      * @return ticketType;
-     */
+     * Implemented in superclass
+     
     public String getTicketType(String ticketType) {
         return this.ticketType;
     }
-    
+    */
     @Override
     public String toString() {
     	StringBuilder sb = new StringBuilder("Passagerare ");

@@ -7,11 +7,7 @@ public class BusinessTicket extends Ticket {
 
     private String ticketType;
 
-    public BusinessTicket(Passenger passenger, Seat seat, Menu menu, int price) {
-        super(passenger, menu, price);
-    	this.ticketType = "Business";
-        price = 20000;
-    }
+
 
     public BusinessTicket(Passenger passenger, Menu menu, int price) {
     	super(passenger, menu, price);
@@ -24,8 +20,8 @@ public class BusinessTicket extends Ticket {
      * @param ticketType Business class ticket
      * @return ticketType;
      */
-    public String setTicketType(String ticketType) {
-        return this.ticketType;
+    public void setTicketType(String ticketType) {
+        this.ticketType = ticketType;
     }
 
     /**

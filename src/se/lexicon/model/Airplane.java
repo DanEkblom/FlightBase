@@ -10,6 +10,8 @@ public class Airplane {
     String airplaneName;
     List<Passenger> airplaneSeats = new ArrayList<Passenger>(10);
     Map<Integer, Passenger> airplaneMap = new TreeMap<Integer, Passenger>();
+    private int currentFreeBusinessSeat = 0;
+    private int currentFreeEconomySeat = 5;
     
     /**
      * Airplane Constructor
@@ -69,38 +71,34 @@ public class Airplane {
     	sb.append(airplaneSeats.size());
     	sb.append(" bokade platser.");
     	
-        //System.out.println(sb);
         return sb.toString();
     }
 
-    public void addPassenger(Passenger passenger) {
-    	airplaneSeats.add(passenger);
+    public boolean addPassenger(Passenger passenger) {
+    	if(passenger instanceof BusinessPassenger) {
+    		if(currentFreeBusinessSeat < 5) {
+    			airplaneSeats.add(currentFreeBusinessSeat++, passenger);
+    			return true;
+    		}
+    		return false;
+    	}
+    	else {
+    		if(currentFreeEconomySeat < 10) {
+    			airplaneSeats.add(currentFreeBusinessSeat++, passenger);
+    			return true;
+    		}
+    		return false;
+    	}
     }
     
     
     public boolean businessSeatsAvailable() {
-		int businessPassengers = 0;
-    	
-    	for(Passenger p : airplaneSeats) {
-			if(p instanceof BusinessPassenger) {
-				businessPassengers++;
-			}
-		}
-    	if(businessPassengers < 5) return true;
-    	
-    	else return false;
+		if(currentFreeBusinessSeat < 4) return true;
+    	return false;
     }
     
     public boolean economySeatsAvailable() {
-		int economyPassengers = 0;
-    	
-    	for(Passenger p : airplaneSeats) {
-			if(p instanceof BusinessPassenger) {
-				economyPassengers++;
-			}
-		}
-    	if(economyPassengers < 5) return true;
-    	
-    	else return false;
+    	if(currentFreeEconomySeat < 9) return true;
+    	return false;
     }//economySeatsAvailable
 }

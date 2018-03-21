@@ -7,108 +7,100 @@ import java.util.TreeMap;
 
 public class Airplane {
 
-    String airplaneName;
-    List<Passenger> airplaneSeats = new ArrayList<Passenger>(10);
-    Map<Integer, Passenger> airplaneMap = new TreeMap<Integer, Passenger>();
-    private int currentFreeBusinessSeat = 0;
-    private int currentFreeEconomySeat = 5;
-    
-    /**
-     * Airplane Constructor
-     * @param airplaneName Airplane unique identifier
-     * @param airplaneSeats Total number of seats available
-     */
+	String airplaneName;
+	List<Passenger> airplaneSeats = new ArrayList<Passenger>(10);
+	Map<Integer, Passenger> airplaneMap = new TreeMap<Integer, Passenger>();
+	private int currentFreeBusinessSeat = 0;
+	private int currentFreeEconomySeat = 5;
 
-    public Airplane(String airplaneName) {
-       this.airplaneName = airplaneName;
-    }
-    
-    public Airplane(String airplaneName, List<Passenger> airplaneSeats) {
-        this.airplaneName = airplaneName;
-        this.airplaneSeats = airplaneSeats;
-    }
+	/**
+	 * Airplane Constructor
+	 * @param airplaneName Airplane unique identifier
+	 * @param airplaneSeats Total number of seats available
+	 */
 
-    /**
-     * Returns airplane name. Useful in toStrings.
-     * @return airplaneName
-     */
-    public String getAirplaneName() {
-        return airplaneName;
-    }
+	public Airplane(String airplaneName) {
+		this.airplaneName = airplaneName;
+	}
 
-    /**
-     * Sets airplane name. Useful when creating new Airplanes.
-     * @param airplaneName Airplane name
-     */
-    // TODO: Redundant method?
-    public void setAirplaneName(String airplaneName) {
-        this.airplaneName = airplaneName;
-    }
+	public Airplane(String airplaneName, List<Passenger> airplaneSeats) {
+		this.airplaneName = airplaneName;
+		this.airplaneSeats = airplaneSeats;
+	}
 
-    /**
-     * Returns list of airplaneSeats. Used to determine if the plane is fully booked or not.
-     * @return airplaneSeats
-     */
-    public List<Passenger> getAirplaneSeats() {
-        return airplaneSeats;
-    }
+	/**
+	 * Returns airplane name. Useful in toStrings.
+	 * @return airplaneName
+	 */
+	public String getAirplaneName() {
+		return airplaneName;
+	}
 
-    /**
-     * Sets list of airplaneSeats. Used to determine if the plane is fully booked or not.
-     * @param airplaneSeats Number of airplane seats
-     */
-    // TODO: Redundant method? Useful when creating new Airplanes with different number of seats.
-    public void setAirplaneSeats(List<Passenger> airplaneSeats) {
-        this.airplaneSeats = airplaneSeats;
-    }
+	/**
+	 * Sets airplane name. Useful when creating new Airplanes.
+	 * @param airplaneName Airplane name
+	 */
+	// TODO: Redundant method?
+	public void setAirplaneName(String airplaneName) {
+		this.airplaneName = airplaneName;
+	}
 
-    @Override
-    public String toString() {
-        //return "Flygplan " + airplaneName + " har " + airplaneSeats.size() + " bokade platser.";
-        StringBuilder sb = new StringBuilder("Flygplan ");
-    	sb.append(airplaneName);
-    	sb.append(" har ");
-    	sb.append(airplaneSeats.size());
-    	sb.append(" bokade platser.");
-    	
-        return sb.toString();
-    }
+	/**
+	 * Returns list of airplaneSeats. Used to determine if the plane is fully booked or not.
+	 * @return airplaneSeats
+	 */
+	public List<Passenger> getAirplaneSeats() {
+		return airplaneSeats;
+	}
 
-    public boolean addPassenger(Passenger passenger) {
-    	if(passenger.getPassengerType() == PassengerType.BUSINESS) {
-    		if(currentFreeBusinessSeat < 5) {
-    			airplaneSeats.add(currentFreeBusinessSeat++, passenger);
-    			return true;
-    		}
-    	if(!businessSeatsAvailable() && !economySeatsAvailable()) {
-    		System.out.println("Planet är fullt.");
-    		return false;
-    	}
-    	else {
-	    	if(passenger instanceof BusinessPassenger) {
-	    		if(currentFreeBusinessSeat < 5) {
-	    			airplaneSeats.add(currentFreeBusinessSeat++, passenger);
-	    			return true;
-	    		}
-	    		return false;
-	    	}
-	    	else {
-	    		if(currentFreeEconomySeat < 10) {
-	    			airplaneSeats.add(currentFreeBusinessSeat++, passenger);
-	    			return true;
-	    		}
-	    		return false;
-	    	}
-    	}
-    }
-    
-    public boolean businessSeatsAvailable() {
-		if(currentFreeBusinessSeat < 4) return true;
-    	return false;
-    }
-    
-    public boolean economySeatsAvailable() {
-    	if(currentFreeEconomySeat < 9) return true;
-    	return false;
-    }//economySeatsAvailable
+	/**
+	 * Sets list of airplaneSeats. Used to determine if the plane is fully booked or not.
+	 * @param airplaneSeats Number of airplane seats
+	 */
+	// TODO: Redundant method? Useful when creating new Airplanes with different number of seats.
+	public void setAirplaneSeats(List<Passenger> airplaneSeats) {
+		this.airplaneSeats = airplaneSeats;
+	}
+
+	@Override
+	public String toString() {
+		//return "Flygplan " + airplaneName + " har " + airplaneSeats.size() + " bokade platser.";
+		StringBuilder sb = new StringBuilder("Flygplan ");
+		sb.append(airplaneName);
+		sb.append(" har ");
+		sb.append(airplaneSeats.size());
+		sb.append(" bokade platser.");
+
+		return sb.toString();
+	}
+
+	public boolean addPassenger(Passenger passenger) {
+		if(!businessSeatsAvailable() && !economySeatsAvailable()) {
+			System.out.println("Planet är fullt.");
+			return false;
+		}
+
+		if(passenger.getPassengerType() == PassengerType.BUSINESS) {
+			if(currentFreeBusinessSeat < 5) {
+				airplaneSeats.add(currentFreeBusinessSeat++, passenger);
+				return true;
+			}
+			else return false;
+		}
+
+		else if(currentFreeEconomySeat < 10) {
+			airplaneSeats.add(currentFreeEconomySeat++, passenger);
+			return true;
+		}
+		return false;
+
+	}//addPassenger
+
+	public boolean businessSeatsAvailable() {
+		return (currentFreeBusinessSeat < 5);
+	}
+
+	public boolean economySeatsAvailable() {
+		return (currentFreeEconomySeat < 10);
+	}//economySeatsAvailable
 }

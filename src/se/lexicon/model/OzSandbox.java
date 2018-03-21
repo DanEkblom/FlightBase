@@ -6,13 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import se.lexicon.model.Airplane;
-import se.lexicon.model.BusinessPassenger;
-import se.lexicon.model.EconomyPassenger;
 import se.lexicon.model.FoodItem;
 import se.lexicon.model.Menu;
 import se.lexicon.model.Passenger;
-import se.lexicon.model.Seat;
-import se.lexicon.model.BusinessTicket;
 
 public class OzSandbox {
 
@@ -235,19 +231,19 @@ public class OzSandbox {
 		name = scanner.nextLine();
 		//TODO metod som genererar unikt newPAssengerID()
 		if (option.trim().equals(BUSINESS) ) {
-			return new BusinessPassenger(name); 
+			return new Passenger(name, PassengerType.BUSINESS); 
 		}
 		else {
-			return new EconomyPassenger(name);
+			return new Passenger(name, PassengerType.ECONOMY);
 		}
 	}
 
-	public BusinessTicket newBusinessTicket() {
-		return new BusinessTicket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) , 20000);
+	public Ticket newBusinessTicket() {
+		return new Ticket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) , 20000, TicketType.BUSINESS);
 	}
 
-	public EconomyTicket newEconomyTicket() {
-		return new EconomyTicket(newPassenger(), new Menu(pickEconomyFood(), pickEconomyBeverage() ) , 5000);
+	public Ticket newEconomyTicket() {
+		return new Ticket(newPassenger(), new Menu(pickEconomyFood(), pickEconomyBeverage() ) , 5000, TicketType.ECONOMY);
 	}
 
 	public void offerOtherTicket(String ticketType) {

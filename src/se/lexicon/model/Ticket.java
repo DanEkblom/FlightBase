@@ -1,5 +1,7 @@
 package se.lexicon.model;
 
+import se.lexicon.exception.NoMoreSeatsException;
+
 /*
  *  Two ticket-types exist: Business or Economy
  */
@@ -10,15 +12,22 @@ public class Ticket {
 	protected int ticketNumber;
 	protected TicketType ticketType;
 	protected int price;
+	private Airplane airplane;
 	
 	protected static int allTicketNumbers = 0;
 
-	public Ticket(Passenger passenger, Menu menu, int price, TicketType ticketType) {
+	public Ticket(Passenger passenger, Menu menu, int price, TicketType ticketType, Airplane airplane) {
 		this.passenger = passenger;
 		this.menu = menu;
 		this.price = price;
 		this.ticketType = ticketType;
 		ticketNumber = ++allTicketNumbers;
+		try {
+			airplane.addPassenger(passenger);
+		} catch (NoMoreSeatsException e) {
+			System.out.println("Planet är fullt");
+			//e.printStackTrace();
+		}
 	}
 
     /**

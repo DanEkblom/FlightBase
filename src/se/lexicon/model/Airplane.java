@@ -83,6 +83,7 @@ public class Airplane {
 
 		if(passenger.getPassengerType() == PassengerType.BUSINESS) {
 			if(currentFreeBusinessSeat < 5) {
+				passenger.setSeat(currentFreeBusinessSeat + 1);
 				airplaneSeats.add(currentFreeBusinessSeat++, passenger);
 				return true;
 			}
@@ -90,6 +91,7 @@ public class Airplane {
 		}
 
 		else if(currentFreeEconomySeat < 10) {
+			passenger.setSeat(currentFreeEconomySeat + 1);
 			airplaneSeats.add(currentFreeEconomySeat++, passenger);
 			return true;
 		}

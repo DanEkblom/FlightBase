@@ -12,12 +12,14 @@ public class Passenger {
 	String name;
 	int age;
 	int passengerId;
+	int seatNo;
 	PassengerType passengerType; 
 	GenderType gender;
 	String fellowPassenger;
 	String passportNumber;
 	String note;
 	String foodAllergies; // GLUTEN, LACTOS, NUTS, ETC.
+	
 	
 	private static int prevPassengerId;
 
@@ -104,6 +106,9 @@ public class Passenger {
 	}
 	public PassengerType getPassengerType() {
 		return passengerType;
+	}	
+	public int getSeatNo() {
+		return seatNo;
 	}
 
 	
@@ -113,7 +118,10 @@ public class Passenger {
 	 *  passengerId and passengerType are ONLY available through the Constructors.
 	 *  All the remaining properties can be set afterwards. 
 	 */
-
+	
+	public void setSeat(int seatNo) {
+		this.seatNo = seatNo;
+	}
 	public void setName(String name) {
 		this.name = Utilities.fixNameInput(name);
 	}

@@ -160,17 +160,9 @@ public class SystemUI {
 			return new EconomyPassenger(name, "?");
 		}
 	}
-
-	public BusinessTicket newTicket(Passenger passenger) {
-		return new BusinessTicket( passenger, new Seat(airplane, 1));
-	}
-
-	public Menu newMenu() {
-		return null;
-	}
 	
 	public BusinessTicket newBusinessTicket() {
-		return new BusinessTicket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) );
+		return new BusinessTicket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ), 20000 );
 	}
 	
 	public void offerOtherTicket() {

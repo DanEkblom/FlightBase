@@ -9,11 +9,14 @@ public abstract class Ticket {
 	private Passenger passenger;
 	private int ticketNumber;
 	private static int allTicketNumbers = 0;
+	protected int price;
+	protected String ticketType;
 	
-	public Ticket(Passenger passenger, Menu menu) {
+	public Ticket(Passenger passenger, Menu menu, int price) {
 		this.passenger = passenger;
 		this.menu = menu;
-		this.ticketNumber = ++allTicketNumbers;
+		this.price = price;
+		ticketNumber = ++allTicketNumbers;
 	}
 
     /**

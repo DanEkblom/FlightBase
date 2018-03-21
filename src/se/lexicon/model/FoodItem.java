@@ -21,6 +21,7 @@ public class FoodItem {
 	public static FoodItem wine = new FoodItem("Vida Vingars speciellt utvalda Fairtrade-KRAV-ekologiska hemtrampade rödvin", 109);
 	public static FoodItem beer = new FoodItem("Öl från pilotens privata mikrobryggeri", 89);
 	public static FoodItem water = new FoodItem("Kranvatten i en jättesnygg PET-flaska", 29);
+	public static FoodItem lemonade = new FoodItem("Vår unika lemonad med endast de mest nödvändiga syntetiska färgämnena", 39);
 	public static FoodItem coffee = new FoodItem("Vida Vingars speciellt utvalda Fairtrade-KRAV-ekologiska hemrostade kaffe", 39);
 	public static FoodItem tea = new FoodItem("Vida Vingars speciellt utvalda Fairtrade-KRAV-ekologiska chai-te", 39);
 

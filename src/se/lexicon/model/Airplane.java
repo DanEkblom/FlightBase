@@ -2,11 +2,14 @@ package se.lexicon.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Airplane {
 
     String airplaneName;
-    List<Passenger> airplaneSeats = new ArrayList<Passenger>();
+    List<Passenger> airplaneSeats = new ArrayList<Passenger>(10);
+    Map<Integer, Passenger> airplaneMap = new TreeMap<Integer, Passenger>();
     
     /**
      * Airplane Constructor

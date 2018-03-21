@@ -41,23 +41,27 @@ public class Main {
     
     	System.out.println(FoodItem.chicken.toString());
 */
-    	new OzSandbox().start();
+    	//new OzSandbox().start();
     	/*
     	Airplane airForceOne = new Airplane("Air Force One");
     	Passenger trump = new BusinessPassenger("Donald J Trump");
     	Menu menu = new Menu(FoodItem.bolognese, FoodItem.water);
     	BusinessTicket ticket = new BusinessTicket(trump, menu, 20000);
     	
-<<<<<<< HEAD
-    	new Airplane("Boeing320").addPassenger(new Passenger("Stefan",PassengerType.BUSINESS));
-=======
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
-    	*/
->>>>>>> 798703feee6fe9e8be5774da4a0f0493eb49a1a5
+    	*/ 	
+    	
+    	Airplane cessna = new Airplane("Cessna320");
+    	if (!cessna.businessSeatsAvailable() && !cessna.economySeatsAvailable()) {
+    		System.out.println("Planet är fullt");
+    	} else {
+    		System.out.println("Det finns plats");
+    	}
+    	
     }
 }

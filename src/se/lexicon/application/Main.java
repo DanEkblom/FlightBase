@@ -41,6 +41,7 @@ public class Main {
 */
 //    	new SystemUI().start();
     	
-    	//new Airplane("Boeing").addPassenger(new BusinessPassenger("Stefan", "?"));
+    	new Airplane("Boeing").addPassenger(new BusinessPassenger("Stefan"));
+    	
     }
 }

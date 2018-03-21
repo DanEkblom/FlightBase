@@ -5,10 +5,10 @@ package se.lexicon.model;
  */
 public abstract class Ticket {
 
-	private Menu menu;
-	private Passenger passenger;
-	private int ticketNumber;
-	private static int allTicketNumbers = 0;
+	protected Menu menu;
+	protected Passenger passenger;
+	protected int ticketNumber;
+	protected static int allTicketNumbers = 0;
 	protected int price;
 	protected String ticketType;
 	

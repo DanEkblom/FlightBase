@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import se.lexicon.model.Airplane;
+import se.lexicon.model.BusinessPassenger;
 import se.lexicon.model.FoodItem;
+import se.lexicon.model.Passenger;
 import se.lexicon.ui.SystemUI;
 
 public class Main {
@@ -36,6 +39,8 @@ public class Main {
     
     	System.out.println(FoodItem.chicken.toString());
 */
-    	new SystemUI().start();
+//    	new SystemUI().start();
+    	
+    	new Airplane("Boeing").addPassenger(new BusinessPassenger("Stefan", "?"));
     }
 }

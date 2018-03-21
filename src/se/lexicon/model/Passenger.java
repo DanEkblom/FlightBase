@@ -7,46 +7,50 @@ public abstract class Passenger {
 	BusinessTicket ticket;
 	String name;
 	int age;
-	String passengerId;
+	int passengerId;
 	GenderType gender;
 	String fellowPassenger;
 	String passportNumber;
 	String note;
 	String foodAllergies; // GLUTEN, LACTOS, NUTS, ETC.
+	
+	private static int prevPassengerId;
 
 	// Constructor of all properties
-	public Passenger(BusinessTicket ticket, String name, int age, String passengerId, GenderType gender, String fellowPassenger,
+	public Passenger(BusinessTicket ticket, String name, int age, GenderType gender, String fellowPassenger,
 			String passportNumber, String note, String foodAllergies) {
 
 		this.ticket = ticket;
 		this.name = Utilities.fixNameInput(name);
 		this.age = age;
-		this.passengerId = passengerId;
 		this.gender = gender;
 		this.fellowPassenger = Utilities.fixNameInput(fellowPassenger);
 		this.passportNumber = passportNumber;
 		this.note = Utilities.fixTextInput(note, false);
 		this.foodAllergies = Utilities.fixTextInput(foodAllergies, false);
+		
+		generatePassengerId();
 	}
 
 	// Minimum Constructor
-	public Passenger(BusinessTicket ticket, String name, String passengerId, GenderType gender) {
+	public Passenger(BusinessTicket ticket, String name, GenderType gender) {
 
 		this.ticket = ticket;
 		this.name = name;
-		this.passengerId = passengerId;
 		this.gender = gender;
 		
 		this.fellowPassenger = "";
 		this.passportNumber = "";
 		this.note = "";
 		this.foodAllergies = "";
+		
+		generatePassengerId();
 	}
 	
 	// Özgurs lekstuga
-	public Passenger(String name, String passengerId) {
-		this.name = Utilities.fixNameInput(name);
-		this.passengerId = passengerId;
+	public Passenger(String name) {
+		this.name = Utilities.fixNameInput(name);	
+		generatePassengerId();
 	}
 
 	/*
@@ -79,7 +83,7 @@ public abstract class Passenger {
 	public String getFoodAllergies() {
 		return foodAllergies;
 	}
-	public String getPassengerId() {
+	public int getPassengerId() {
 		return passengerId;
 	}
 
@@ -114,13 +118,16 @@ public abstract class Passenger {
 		this.foodAllergies = Utilities.fixTextInput(foodAllergies, false);
 	}
 
-
+	public void generatePassengerId() {
+		passengerId = ++prevPassengerId;
+	}
+	
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		
 		s.append("Namn: ");
 		s.append(name);
-		s.append("\nPassagerID: ");
+		s.append("\nPassagerarID: ");
 		s.append(passengerId);
 		
 		if (!passportNumber.equals("")){

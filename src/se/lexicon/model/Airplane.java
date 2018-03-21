@@ -77,6 +77,7 @@ public class Airplane {
     	airplaneSeats.add(passenger);
     }
     
+    
     public boolean businessSeatsAvailable() {
 		int businessPassengers = 0;
     	

@@ -5,21 +5,21 @@ import sun.security.krb5.internal.Ticket;
 public class EconomyPassenger extends Passenger {
 
 	// Constructor of all properties
-	public EconomyPassenger(BusinessTicket ticket, String name, int age, String passengerId, GenderType gender, String fellowPassenger,
+	public EconomyPassenger(BusinessTicket ticket, String name, int age, GenderType gender, String fellowPassenger,
 			String passportNumber, String note, String foodAllergies) {
 		
-		super(ticket, name, age, passengerId, gender, fellowPassenger, passportNumber, note, foodAllergies);
+		super(ticket, name, age, gender, fellowPassenger, passportNumber, note, foodAllergies);
 
 	}
 
 	// Minimum Constructor
-	public EconomyPassenger(BusinessTicket ticket, String name, String passengerId, GenderType gender) {
-		super(ticket, name, passengerId, gender);
+	public EconomyPassenger(BusinessTicket ticket, String name, GenderType gender) {
+		super(ticket, name, gender);
 	}
 	
 	//Özgurs lekstuga
-	public EconomyPassenger(String name, String passengerId) {
-		super(name, passengerId);
+	public EconomyPassenger(String name) {
+		super(name);
 	}
 
 	public String toString() {

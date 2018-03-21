@@ -15,19 +15,18 @@ import se.lexicon.model.Seat;
 import se.lexicon.model.BusinessTicket;
 
 public class OzSandbox {
-	
+
 	Scanner scanner = new Scanner(System.in);
 	String food, beverage, name, option;
 	final String BUSINESS = "1";
 	final String ECONOMY = "2";
-	private boolean businessTicket = false;
 
 	Airplane airplane = new Airplane("Boeing A320");
 
 	List<Ticket> tickets = new ArrayList<Ticket>();
 
-	
-	
+
+
 	// Start the applications UI
 	public void start() {
 
@@ -57,7 +56,7 @@ public class OzSandbox {
 						break;
 
 					case "1":
-						businessTicket = true;
+
 						if( airplane.businessSeatsAvailable() ){
 
 							tickets.add( newBusinessTicket() );
@@ -67,22 +66,21 @@ public class OzSandbox {
 
 						}
 						else{
-							offerOtherTicket();
+							offerOtherTicket(ECONOMY);
 						}
 
 						break;
 
 					case "2":
-						businessTicket = false;
-						
+
 						if( airplane.economySeatsAvailable()){
 
-								tickets.add(newEconomyTicket());
+							tickets.add(newEconomyTicket());
 
 						}else {
-							offerOtherTicket();
+							offerOtherTicket(BUSINESS);
 						}
-						 
+
 						break;
 
 					default:
@@ -155,16 +153,26 @@ public class OzSandbox {
 	}
 	public FoodItem pickEconomyFood() {
 		FoodItem foodItem = null;
-		System.out.println("Vänligen välj en huvudrätt ur business-menyn");
-		System.out.println("1:"+FoodItem.meatballs.toString());
-		System.out.println("2:"+FoodItem.bolognese.toString());
+		boolean isRunning = true;
+		while(isRunning) {
+			System.out.println("Vänligen välj en huvudrätt ur business-menyn");
+			System.out.println("1:"+FoodItem.meatballs.toString());
+			System.out.println("2:"+FoodItem.bolognese.toString());
 
-		option = scanner.next();
+			option = scanner.next();
 
-		switch(option) {
-		case "1": foodItem = FoodItem.meatballs;
-		case "2": foodItem = FoodItem.bolognese;
-		default : System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
+			switch(option) {
+			case "1":
+				foodItem = FoodItem.meatballs;
+				isRunning = false;
+				break;
+			case "2":
+				foodItem = FoodItem.bolognese;
+				isRunning = false;
+				break;
+			default :
+				System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
+			}
 		}
 
 		return foodItem;
@@ -184,28 +192,53 @@ public class OzSandbox {
 		return foodItem;
 	}
 
-	
+
 	public Passenger newPassenger() {
 		System.out.println("Vänligen ange namn:");
 		name = scanner.next();
 		//TODO metod som genererar unikt newPAssengerID()
 		if (option.trim().equals(BUSINESS) ) {
-			return new BusinessPassenger(name, "?"); 
+			return new BusinessPassenger(name); 
 		}
 		else {
-			return new EconomyPassenger(name, "?");
+			return new EconomyPassenger(name);
 		}
 	}
 
 	public BusinessTicket newBusinessTicket() {
 		return new BusinessTicket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) , 20000);
 	}
-	
+
 	public EconomyTicket newEconomyTicket() {
 		return new EconomyTicket(newPassenger(), new Menu(pickEconomyFood(), pickEconomyBeverage() ) , 5000);
 	}
 
-	public void offerOtherTicket() {
-		
+	public void offerOtherTicket(String ticketType) {
+		String ticketString = "";
+		if(ticketType.equals(BUSINESS)) {
+			System.out.println("Vi har tyvärr inga platser kvar i economy class.\n"
+					+ "Vill du istället köpa en biljett i business class? Det kostar bara fyra gånger så mycket.(j/n)");
+			option = scanner.next();
+
+			if(option.equals("j")) {
+				tickets.add(newBusinessTicket());
+			}
+			else if(option.equals("n")) {
+				System.out.println("Vad tråkigt att höra. Glöm inte att ta del av alla heta erbjudanden vi kommer att spamma din mail med.");
+			}
+		}
+		else {
+			System.out.println("Vi har tyvärr inga platser kvar i business class. Vill du istället köpa en biljett i economy class?\n"
+					+ "Sätena är lite hårdare och trängre, och film kan du glömma, men det kostar bara 500 kr.(j/n)");
+			option = scanner.next();
+
+			if(option.equals("j")) {
+				tickets.add(newEconomyTicket());
+			}
+			else if(option.equals("n")) {
+				System.out.println("Vad tråkigt att höra. Glöm inte att ta del av alla heta erbjudanden vi kommer att spamma din mail med.");
+			}
+		}
+
 	}
 }

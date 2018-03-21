@@ -6,6 +6,8 @@ import java.util.List;
 
 import se.lexicon.model.Airplane;
 import se.lexicon.model.FoodItem;
+import se.lexicon.model.Menu;
+import se.lexicon.model.OzSandbox;
 import se.lexicon.model.Passenger;
 import se.lexicon.model.PassengerType;
 import se.lexicon.ui.SystemUI;
@@ -39,8 +41,23 @@ public class Main {
     
     	System.out.println(FoodItem.chicken.toString());
 */
-//    	new SystemUI().start();
+    	new OzSandbox().start();
+    	/*
+    	Airplane airForceOne = new Airplane("Air Force One");
+    	Passenger trump = new BusinessPassenger("Donald J Trump");
+    	Menu menu = new Menu(FoodItem.bolognese, FoodItem.water);
+    	BusinessTicket ticket = new BusinessTicket(trump, menu, 20000);
     	
+<<<<<<< HEAD
     	new Airplane("Boeing320").addPassenger(new Passenger("Stefan",PassengerType.BUSINESS));
+=======
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	*/
+>>>>>>> 798703feee6fe9e8be5774da4a0f0493eb49a1a5
     }
 }

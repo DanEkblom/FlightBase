@@ -80,17 +80,27 @@ public class Airplane {
     			airplaneSeats.add(currentFreeBusinessSeat++, passenger);
     			return true;
     		}
+    	if(!businessSeatsAvailable() && !economySeatsAvailable()) {
+    		System.out.println("Planet är fullt.");
     		return false;
     	}
     	else {
-    		if(currentFreeEconomySeat < 10) {
-    			airplaneSeats.add(currentFreeBusinessSeat++, passenger);
-    			return true;
-    		}
-    		return false;
+	    	if(passenger instanceof BusinessPassenger) {
+	    		if(currentFreeBusinessSeat < 5) {
+	    			airplaneSeats.add(currentFreeBusinessSeat++, passenger);
+	    			return true;
+	    		}
+	    		return false;
+	    	}
+	    	else {
+	    		if(currentFreeEconomySeat < 10) {
+	    			airplaneSeats.add(currentFreeBusinessSeat++, passenger);
+	    			return true;
+	    		}
+	    		return false;
+	    	}
     	}
     }
-    
     
     public boolean businessSeatsAvailable() {
 		if(currentFreeBusinessSeat < 4) return true;

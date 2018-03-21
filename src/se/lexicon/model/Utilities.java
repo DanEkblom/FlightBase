@@ -10,14 +10,41 @@ public abstract class Utilities {
 	 *  Convert to Swedish routines
 	 * —————————————————————————————
 	 */
-	public static String genderToSwedish(GenderType g) {
+	public static String genderToSwedish(GenderType g, boolean upperCase) {
 
 		if (g == GenderType.FEMALE) {
-			return "KVINNA";
+			if (upperCase) {
+				return "KVINNA";
+			} else {
+				return "Kvinna";
+			}
 		} else if (g == GenderType.MALE) {
-			return "MAN";
+			if (upperCase) {
+				return "MAN";
+			} else {
+				return "Man";
+			}
 		} else {
-			return "OKÄND"; // UNKNOWN: Should never happens
+			return "N/A"; // UNKNOWN: Should never happens
+		}
+	}
+
+	public static String passengerTypeToSwedish(PassengerType pt, boolean upperCase) {
+
+		if (pt == PassengerType.BUSINESS) {
+			if (upperCase) {
+				return "BUSINESS";
+			} else {
+				return "Business";
+			}
+		} else if (pt == PassengerType.ECONOMY) {
+			if (upperCase) {
+				return "EKONOMI";
+			} else {
+				return "Ekonomi";
+			}
+		} else {
+			return "N/A"; // UNKNOWN: Should never happens
 		}
 	}
 

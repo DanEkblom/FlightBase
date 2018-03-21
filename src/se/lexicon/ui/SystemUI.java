@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 
 import se.lexicon.model.Airplane;
-import se.lexicon.model.BusinessPassenger;
-import se.lexicon.model.EconomyPassenger;
 import se.lexicon.model.FoodItem;
 import se.lexicon.model.Menu;
 import se.lexicon.model.Passenger;
-import se.lexicon.model.Seat;
-import se.lexicon.model.BusinessTicket;
+import se.lexicon.model.PassengerType;
+import se.lexicon.model.Ticket;
+import se.lexicon.model.TicketType;
+import se.lexicon.model.Utilities;
 
 public class SystemUI {
 	Scanner scanner = new Scanner(System.in);
@@ -19,10 +19,11 @@ public class SystemUI {
 	FoodItem food, beverage;
 	final String BUSINESS = "1";
 	final String ECONOMY = "2";
+	boolean businessTicket;
 
 	Airplane airplane = new Airplane("Boeing A320");
 
-	List<BusinessTicket> tickets = new ArrayList<BusinessTicket>();
+	List<Ticket> tickets = new ArrayList<Ticket>();
 
 	// Start the applications UI
 	public void start() {
@@ -44,10 +45,8 @@ public class SystemUI {
 							+ "1: Flyga Business Class\n"
 							+ "2: Flyga Economy class\n"
 							+ "0: Avsluta");
-					
-					option = scanner.next().trim();
-					
 
+					option = scanner.next().trim();
 
 					switch(option) {
 					case "0":
@@ -55,20 +54,14 @@ public class SystemUI {
 						break;
 
 					case "1":
-						
-						    newPassenger(BUSINESS);
-							food = pickBusinessFood();
-							beverage = pickBusinessBeverage();
 
+						businessTicket = true;
 						if( airplane.businessSeatsAvailable() ){
 
-							newBusinessTicket();
-							
+							tickets.add( newBusinessTicket() );
 
 							//TODO: gör en snygg lista som visar vad kunden har valt som
 							//han kan bekräfta
-
-							//tickets.add(new Ticket ())
 
 						}
 						else{
@@ -78,24 +71,24 @@ public class SystemUI {
 						break;
 
 					case "2":
-						
-							newPassenger(ECONOMY);
-							food = pickEconomyFood();
-							beverage = pickEconomyBeverage();
-						
-						
-						if(airplane.economySeatsAvailable(){
 
-							pickEconomyMenu();
+						businessTicket = false;
 
+						if( airplane.economySeatsAvailable()){
+
+							tickets.add(newEconomyTicket());
+
+						}else {
+							offerOtherTicket();
 						}
+
 						break;
 
 					default:
 						System.out.println(option + " är ett ogiltigt val. Var god försök igen.");
 
 					}
-					if (isRunning) tickets.add( newTicket(newPassenger()) );
+
 				} catch (Exception e) {
 					System.out.println("Exception caught in inner try : " + e.getMessage());
 
@@ -148,7 +141,7 @@ public class SystemUI {
 		System.out.println("Vänligen välj något uppfriskande ur vår exklusiva dryckesmeny:");
 		System.out.println("1: " + FoodItem.wine.toString());
 		System.out.println("2: " + FoodItem.beer.toString());	
-		
+
 		option = scanner.next().trim();
 		if (option.equals("1")){
 			foodItem = FoodItem.wine;
@@ -165,7 +158,7 @@ public class SystemUI {
 		System.out.println("Vänligen välj en huvudrätt ur economy-menyn");
 
 		//TODO Özgür får välja sina favoriter
-		
+
 		System.out.println("1: "+FoodItem.escargo.toString());
 		System.out.println("2: "+FoodItem.frogLegs.toString());
 
@@ -178,18 +171,18 @@ public class SystemUI {
 			System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
 		}
 		return foodItem;
-		
+
 	}
-	
+
 	public FoodItem pickEconomyBeverage() {
 		FoodItem foodItem = null;
 		System.out.println("Vänligen välj något uppfriskande ur vår dryckesmeny:");
-		
+
 		//TODO Özgür får välja sina favoriter
-		
+
 		System.out.println("1:" + FoodItem.wine.toString());
 		System.out.println("2:" + FoodItem.beer.toString());
-		
+
 		option = scanner.next().trim();
 		if (option.equals("1")){
 			foodItem = FoodItem.wine;
@@ -201,23 +194,28 @@ public class SystemUI {
 		return foodItem;
 	}
 
-	public Passenger newPassenger(String option) {
+	public Passenger newPassenger(TicketType ticketType) {
 		System.out.println("Vänligen ange namn:");
-		name = scanner.next().trim();
-		
-		if (option.trim().equals(BUSINESS) ) {
-			return new BusinessPassenger(name); 
+		name = Utilities.fixNameInput(scanner.next());
+
+		if (ticketType.equals(TicketType.BUSINESS) ) {
+			return new Passenger(name, PassengerType.BUSINESS); 
 		}
 		else {
-			return new EconomyPassenger(name);
+			return new Passenger(name, PassengerType.ECONOMY);
 		}
 	}
+	
 
-	public BusinessTicket newBusinessTicket() {
-		return new BusinessTicket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ), 20000 );
+	public Ticket newBusinessTicket() {
+		return new Ticket(newPassenger(TicketType.BUSINESS), new Menu(pickBusinessFood(), pickBusinessBeverage() ) , 20000, TicketType.BUSINESS);
 	}
 	
+	public Ticket newEconomyTicket() {
+		return new Ticket(newPassenger(TicketType.ECONOMY), new Menu(pickEconomyFood(), pickEconomyBeverage() ) , 5000, TicketType.ECONOMY);
+	}
+
 	public void offerOtherTicket() {
-		
+
 	}
 }

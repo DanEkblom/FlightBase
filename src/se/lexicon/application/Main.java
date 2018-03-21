@@ -6,7 +6,10 @@ import java.util.List;
 
 import se.lexicon.model.Airplane;
 import se.lexicon.model.BusinessPassenger;
+import se.lexicon.model.BusinessTicket;
 import se.lexicon.model.FoodItem;
+import se.lexicon.model.Menu;
+import se.lexicon.model.OzSandbox;
 import se.lexicon.model.Passenger;
 import se.lexicon.ui.SystemUI;
 
@@ -39,9 +42,19 @@ public class Main {
     
     	System.out.println(FoodItem.chicken.toString());
 */
-//    	new SystemUI().start();
+    	new OzSandbox().start();
+    	/*
+    	Airplane airForceOne = new Airplane("Air Force One");
+    	Passenger trump = new BusinessPassenger("Donald J Trump");
+    	Menu menu = new Menu(FoodItem.bolognese, FoodItem.water);
+    	BusinessTicket ticket = new BusinessTicket(trump, menu, 20000);
     	
-    	new Airplane("Boeing").addPassenger(new BusinessPassenger("Stefan"));
-    	
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
+    	*/
     }
 }

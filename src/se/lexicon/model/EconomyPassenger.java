@@ -1,6 +1,4 @@
-package se.lexicon.model;
-
-import .Ticket;
+package se.lexicon.model; 
 
 public class EconomyPassenger extends Passenger {
 

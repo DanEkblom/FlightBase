@@ -5,10 +5,15 @@ package se.lexicon.model;
  */
 public abstract class Ticket {
 
-	private Menu menu;
+	protected Menu menu;
+	protected Passenger passenger;
+	protected int price;
+	protected String ticketType;
 	
-	public Ticket(Menu menu) {
+	public Ticket(Passenger passenger, Menu menu, int price) {
+		this.passenger = passenger;
 		this.menu = menu;
+		this.price = price;
 	}
 	
     /**

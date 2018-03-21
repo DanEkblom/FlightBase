@@ -6,13 +6,12 @@ package se.lexicon.model;
 public class EconomyTicket extends Ticket {
 
     private String ticketType;
-    private int ticketPrice;
-    private Passenger passenger;
 
-    public EconomyTicket(Passenger passenger) {
-         this.ticketType = "Economy";
-         this.passenger = passenger;
-         ticketPrice = 5000;
+
+    public EconomyTicket(Passenger passenger, Menu menu, int price) {
+    	super(passenger, menu, price); 
+    	this.ticketType = "Economy";
+         price = 5000;
     }
 
     /**
@@ -39,7 +38,7 @@ public class EconomyTicket extends Ticket {
     	sb.append(" har bokat en ");
     	sb.append(ticketType);
     	sb.append("-biljett för ");
-    	sb.append(ticketPrice);
+    	sb.append(price);
     	sb.append(":-.");
     	
         //System.out.println(sb);

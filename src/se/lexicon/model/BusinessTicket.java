@@ -6,20 +6,16 @@ package se.lexicon.model;
 public class BusinessTicket extends Ticket {
 
     private String ticketType;
-    private int ticketPrice;
-    private Passenger passenger;
-    private int ticketNr;
 
-    public BusinessTicket(Passenger passenger, Seat seat, Menu menu) {
-        this.ticketType = "Business";
-        this.passenger = passenger;
-        ticketPrice = 20000;
+    public BusinessTicket(Passenger passenger, Seat seat, Menu menu, int price) {
+        super(passenger, menu, price);
+    	this.ticketType = "Business";
+        price = 20000;
     }
 
-    public BusinessTicket(Passenger passenger, Menu menu) {
-        this.ticketType = "Business";
-        this.passenger = passenger;
-        ticketPrice = 20000;
+    public BusinessTicket(Passenger passenger, Menu menu, int price) {
+    	super(passenger, menu, price);
+    	this.ticketType = "Business";
     }
 
     
@@ -47,7 +43,7 @@ public class BusinessTicket extends Ticket {
     	sb.append(" har bokat en ");
     	sb.append(ticketType);
     	sb.append("-biljett för ");
-    	sb.append(ticketPrice);
+    	sb.append(price);
     	sb.append(":-.");
     	
         //System.out.println(sb);

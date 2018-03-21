@@ -48,6 +48,26 @@ public abstract class Utilities {
 		}
 	}
 
+	public static String ticketTypeToSwedish(TicketType tt, boolean upperCase) {
+		
+		if (tt == TicketType.BUSINESS) {
+			if (upperCase) {
+				return "BUSINESS";
+			} else {
+				return "Business";
+			}
+		} else if (tt == TicketType.ECONOMY) {
+			if (upperCase) {
+				return "EKONOMI";
+			} else {
+				return "Ekonomi";
+			}
+		} else {
+			return "N/A"; // UNKNOWN: Should never happens
+		}
+	}
+
+	
 	// Returns a single-space separated sentence of initial-words (begins with an upper-case-letter)
 	public static String fixNameInput(String s) {
 		

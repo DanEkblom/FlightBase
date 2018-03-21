@@ -230,7 +230,8 @@ public class OzSandbox {
 		System.out.println("Vänligen ange namn:");
 		name = scanner.nextLine();
 		//TODO metod som genererar unikt newPAssengerID()
-		if (option.trim().equals(BUSINESS) ) {
+		System.out.println(option);
+		if (option.trim().equals("1") ) {
 			return new Passenger(name, PassengerType.BUSINESS); 
 		}
 		else {

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import se.lexicon.exception.NoMoreSeatsException;
+
 public class Airplane {
 
 	String airplaneName;
@@ -74,10 +76,9 @@ public class Airplane {
 		return sb.toString();
 	}
 
-	public boolean addPassenger(Passenger passenger) {
+	public boolean addPassenger(Passenger passenger) throws NoMoreSeatsException{
 		if(!businessSeatsAvailable() && !economySeatsAvailable()) {
-			System.out.println("Planet är fullt.");
-			return false;
+			throw new NoMoreSeatsException();
 		}
 
 		if(passenger.getPassengerType() == PassengerType.BUSINESS) {

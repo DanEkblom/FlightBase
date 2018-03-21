@@ -46,7 +46,7 @@ public class SystemUI {
 							+ "2: Flyga Economy class\n"
 					        + "0: Avsluta");
 
-					option = scanner.next().trim();
+					option = scanner.nextLine().trim();
 
 					switch (option) {
 					case "0":
@@ -155,11 +155,11 @@ public class SystemUI {
 		System.out.println("1: " + FoodItem.wine.toString());
 		System.out.println("2: " + FoodItem.beer.toString());
 
-		option = scanner.next().trim();
+		option = scanner.nextLine().trim();
 
 		while (!correctInput) {
 
-			option = scanner.next();
+			option = scanner.nextLine();
 			switch (option) {
 
 			case "1":
@@ -189,7 +189,7 @@ public class SystemUI {
 		System.out.println("1:" + FoodItem.meatballs.toString());
 		System.out.println("2:" + FoodItem.bolognese.toString());
 
-		option = scanner.next().trim();
+		option = scanner.nextLine().trim();
 
 		while (!correctInput) {
 
@@ -220,10 +220,10 @@ public class SystemUI {
 		System.out.println("1:" + FoodItem.water.toString());
 		System.out.println("2:" + FoodItem.lemonade.toString());
 
-		option = scanner.next().trim();
+		option = scanner.nextLine().trim();
 
 		while (!correctInput) {
-			option = scanner.next();
+			option = scanner.nextLine().trim();
 			switch (option) {
 			case "1":
 				foodItem = FoodItem.water;
@@ -253,8 +253,10 @@ public class SystemUI {
 	}
 
 	public Ticket newBusinessTicket() {
-		return new Ticket(newPassenger(TicketType.BUSINESS), new Menu(pickBusinessFood(), pickBusinessBeverage()),
-				20000, TicketType.BUSINESS);
+		Menu menu = new Menu(pickBusinessFood(), pickBusinessBeverage());
+		Passenger passenger = newPassenger(TicketType.BUSINESS);
+		airplane.addPassenger(passenger);
+		return new Ticket(passenger, menu, 20000, TicketType.BUSINESS);
 	}
 
 	public Ticket newEconomyTicket() {
@@ -267,7 +269,7 @@ public class SystemUI {
 		if (ticketType.equals(TicketType.BUSINESS)) {
 			System.out.println("Vi har tyvärr inga platser kvar i economy class.\n"
 					+ "Vill du istället köpa en biljett i business class? Det kostar bara fyra gånger så mycket.(j/n)");
-			option = scanner.next().trim();
+			option = scanner.nextLine().trim();
 
 			if (option.equals("j")) {
 				tickets.add(newBusinessTicket());
@@ -279,7 +281,7 @@ public class SystemUI {
 			System.out.println(
 					"Vi har tyvärr inga platser kvar i business class. Vill du istället köpa en biljett i economy class?\n"
 							+ "Sätena är lite hårdare och trängre, och film kan du glömma, men det kostar bara 500 kr.(j/n)");
-			option = scanner.next().trim();
+			option = scanner.nextLine().trim();
 
 			if (option.equals("j")) {
 				tickets.add(newEconomyTicket());

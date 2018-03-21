@@ -1,42 +1,49 @@
 package se.lexicon.model;
 
-/**
- * Abstract class for Ticket. Provides a base/contract for underlying classes (Business and Economy).
+/*
+ *  Two ticket-types exist: Business or Economy
  */
-public abstract class Ticket {
+public class Ticket {
 
-	protected Menu menu;
 	protected Passenger passenger;
+	protected Menu menu;
 	protected int ticketNumber;
-	protected static int allTicketNumbers = 0;
+	protected TicketType ticketType;
 	protected int price;
-	protected String ticketType;
 	
-	public Ticket(Passenger passenger, Menu menu, int price) {
+	protected static int allTicketNumbers = 0;
+
+	public Ticket(Passenger passenger, Menu menu, int price, TicketType ticketType) {
 		this.passenger = passenger;
 		this.menu = menu;
 		this.price = price;
+		this.ticketType = ticketType;
 		ticketNumber = ++allTicketNumbers;
 	}
-
-    /**
-     * Sets the ticket type
-     * @param ticketType Type of ticket
-     * @return ticketType;
-     //when will this be used?
-    public String setTicketType(String ticketType) {
-    	return null;
-    }
 
     /**
      * Gets the ticket type
      * @param ticketType Type of ticket
      * @return ticketType;
      */
-    public String getTicketType() {
-    	return this.getClass().getName();
+    public TicketType getTicketType() {
+    	return ticketType;
     }
 
-    public abstract String toString();
+    public String toString() {
+    	
+    	StringBuilder sb = new StringBuilder("Passagerare ");
+        sb.append(this.passenger.getName());
+        sb.append(" har bokat en \"");
+        sb.append(ticketType.toString().toLowerCase());
+        sb.append("\"-biljett för ");
+        sb.append(price);
+        sb.append(":-. Stolnumret är \"");
+        sb.append(ticketNumber);
+        sb.append("\". Ytterligare val:\n");
+        sb.append(menu.toString());
+        
+        return sb.toString();
+    }
     
 }

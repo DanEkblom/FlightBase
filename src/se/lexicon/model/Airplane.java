@@ -75,6 +75,11 @@ public class Airplane {
     }
 
     public boolean addPassenger(Passenger passenger) {
+    	if(passenger.getPassengerType() == PassengerType.BUSINESS) {
+    		if(currentFreeBusinessSeat < 5) {
+    			airplaneSeats.add(currentFreeBusinessSeat++, passenger);
+    			return true;
+    		}
     	if(!businessSeatsAvailable() && !economySeatsAvailable()) {
     		System.out.println("Planet är fullt.");
     		return false;

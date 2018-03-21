@@ -1,13 +1,18 @@
 package se.lexicon.model;
 
-import se.lexicon.model.BusinessTicket;
+import se.lexicon.model.Ticket;
 
-public abstract class Passenger {
+/*
+ * Two Passenger-types: BUSINESS or ECONOMY
+ */
 
-	BusinessTicket ticket;
+public class Passenger {
+
+	Ticket ticket;
 	String name;
 	int age;
 	int passengerId;
+	PassengerType passengerType; 
 	GenderType gender;
 	String fellowPassenger;
 	String passportNumber;
@@ -17,8 +22,8 @@ public abstract class Passenger {
 	private static int prevPassengerId;
 
 	// Constructor of all properties
-	public Passenger(BusinessTicket ticket, String name, int age, GenderType gender, String fellowPassenger,
-			String passportNumber, String note, String foodAllergies) {
+	public Passenger(Ticket ticket, String name, int age, GenderType gender, String fellowPassenger,
+			String passportNumber, String note, String foodAllergies, PassengerType passengerType) {
 
 		this.ticket = ticket;
 		this.name = Utilities.fixNameInput(name);
@@ -28,16 +33,18 @@ public abstract class Passenger {
 		this.passportNumber = passportNumber;
 		this.note = Utilities.fixTextInput(note, false);
 		this.foodAllergies = Utilities.fixTextInput(foodAllergies, false);
+		this.passengerType = passengerType;
 		
 		generatePassengerId();
 	}
 
 	// Minimum Constructor
-	public Passenger(BusinessTicket ticket, String name, GenderType gender) {
+	public Passenger(Ticket ticket, String name, GenderType gender, PassengerType passengerType) {
 
 		this.ticket = ticket;
 		this.name = name;
 		this.gender = gender;
+		this.passengerType = passengerType;
 		
 		this.fellowPassenger = "";
 		this.passportNumber = "";
@@ -48,8 +55,17 @@ public abstract class Passenger {
 	}
 	
 	// Özgurs lekstuga
-	public Passenger(String name) {
-		this.name = Utilities.fixNameInput(name);	
+	public Passenger(String name, PassengerType passengerType) {
+		
+		this.name = Utilities.fixNameInput(name);
+		this.passengerType = passengerType;
+		
+		this.gender= GenderType.UNKNOWN;
+		this.fellowPassenger = "";
+		this.passportNumber = "";
+		this.note = "";
+		this.foodAllergies = "";
+		
 		generatePassengerId();
 	}
 
@@ -62,7 +78,7 @@ public abstract class Passenger {
 	public String getName() {
 		return name;
 	}
-	public BusinessTicket getTicket() {
+	public Ticket getTicket() {
 		return ticket;
 	}
 	public int getAge() {
@@ -86,11 +102,16 @@ public abstract class Passenger {
 	public int getPassengerId() {
 		return passengerId;
 	}
+	public PassengerType getPassengerType() {
+		return passengerType;
+	}
 
+	
 	/*
 	 * Start of Setters
 	 * 
-	 * All except passengerId are available to be set afterwards ! 
+	 *  passengerId and passengerType are ONLY available through the Constructors.
+	 *  All the remaining properties can be set afterwards. 
 	 */
 
 	public void setName(String name) {
@@ -102,7 +123,7 @@ public abstract class Passenger {
 	public void setGender(GenderType gender) {
 		this.gender = gender;
 	}
-	public void setTicket(BusinessTicket ticket) {
+	public void setTicket(Ticket ticket) {
 		this.ticket = ticket;
 	}
 	public void setFellowPassenger(String fellowPassenger) {
@@ -122,11 +143,20 @@ public abstract class Passenger {
 		passengerId = ++prevPassengerId;
 	}
 	
+	/*
+	 * Blank none-optional properties are ignored here
+	 */
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		
-		s.append("Namn: ");
+		s.append("PASSAGERARE:");
+		
+		s.append("\nBiljettyp: ");
+		s.append(Utilities.passengerTypeToSwedish(passengerType, false));
+		
+		s.append("\nNamn: ");
 		s.append(name);
+		
 		s.append("\nPassagerarID: ");
 		s.append(passengerId);
 		
@@ -141,7 +171,7 @@ public abstract class Passenger {
 		}
 		
 		s.append("/nKön: ");
-		s.append(Utilities.genderToSwedish(gender));
+		s.append(Utilities.genderToSwedish(gender, false));
 		
 		if (!fellowPassenger.equals("")) {
 			s.append("/nMedpassagerare: ");

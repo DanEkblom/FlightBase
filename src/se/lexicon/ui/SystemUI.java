@@ -15,7 +15,8 @@ import se.lexicon.model.BusinessTicket;
 
 public class SystemUI {
 	Scanner scanner = new Scanner(System.in);
-	String food, beverage, name, option;
+	String  name, option;
+	FoodItem food, beverage;
 	final String BUSINESS = "1";
 	final String ECONOMY = "2";
 
@@ -56,7 +57,6 @@ public class SystemUI {
 					case "1":
 						
 						    newPassenger(BUSINESS);
-						
 							food = pickBusinessFood();
 							beverage = pickBusinessBeverage();
 
@@ -84,7 +84,7 @@ public class SystemUI {
 							beverage = pickEconomyBeverage();
 						
 						
-						if( plane.economySeatsAvailable(){
+						if(airplane.economySeatsAvailable(){
 
 							pickEconomyMenu();
 
@@ -144,43 +144,64 @@ public class SystemUI {
 	}
 
 	public FoodItem pickBusinessBeverage() {
-		FoodItem foodItem = null;
+		FoodItem foodItem = null;	
 		System.out.println("Vänligen välj något uppfriskande ur vår exklusiva dryckesmeny:");
-		System.out.println("1:" + FoodItem.wine.toString());
-		System.out.println("2:" + FoodItem.beer.toString());
+		System.out.println("1: " + FoodItem.wine.toString());
+		System.out.println("2: " + FoodItem.beer.toString());	
 		
-	}
-
-	public String pickEconomyFood() {
-		System.out.println("Vänligen välj en huvudrätt ur economy-menyn");
-		//TODO Özgür får välja sina favoriter
-		System.out.println("1:"+FoodItem.escargo.toString());
-		System.out.println("2:"+FoodItem.frogLegs.toString());
-		return scanner.next().trim();
-	}
-	
-	public String pickEconomyBeverage() {
-		System.out.println("Vänligen välj något uppfriskande ur vår dryckesmeny:");
-		//TODO Özgür får välja sina favoriter
-		System.out.println("1:" + FoodItem.wine.toString());
-		System.out.println("2:" + FoodItem.beer.toString());
-		return scanner.next().trim();	
-	}
-
-	
-	public Passenger newPassenger(String option) {
-
-		option = scanner.next();
-		switch(option) {
-		case "1": foodItem = FoodItem.wine;
-		case "2": foodItem = FoodItem.beer;
-		default : System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
+		option = scanner.next().trim();
+		if (option.equals("1")){
+			foodItem = FoodItem.wine;
+		} else if (option.equals("2")) {
+			foodItem = FoodItem.beer;
+		} else {
+			System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
 		}
-
 		return foodItem;
 	}
 
-	public Passenger newPassenger() {
+	public FoodItem pickEconomyFood() {
+		FoodItem foodItem = null;
+		System.out.println("Vänligen välj en huvudrätt ur economy-menyn");
+
+		//TODO Özgür får välja sina favoriter
+		
+		System.out.println("1: "+FoodItem.escargo.toString());
+		System.out.println("2: "+FoodItem.frogLegs.toString());
+
+		option = scanner.next().trim();
+		if (option.equals("1")){
+			foodItem = FoodItem.escargo;
+		} else if (option.equals("2")) {
+			foodItem = FoodItem.frogLegs;
+		} else {
+			System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
+		}
+		return foodItem;
+		
+	}
+	
+	public FoodItem pickEconomyBeverage() {
+		FoodItem foodItem = null;
+		System.out.println("Vänligen välj något uppfriskande ur vår dryckesmeny:");
+		
+		//TODO Özgür får välja sina favoriter
+		
+		System.out.println("1:" + FoodItem.wine.toString());
+		System.out.println("2:" + FoodItem.beer.toString());
+		
+		option = scanner.next().trim();
+		if (option.equals("1")){
+			foodItem = FoodItem.wine;
+		} else if (option.equals("2")) {
+			foodItem = FoodItem.beer;
+		} else {
+			System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
+		}
+		return foodItem;
+	}
+
+	public Passenger newPassenger(String option) {
 		System.out.println("Vänligen ange namn:");
 		name = scanner.next().trim();
 		
@@ -192,7 +213,7 @@ public class SystemUI {
 		}
 	}
 
-	public BusinessTicket newTicket(Passenger passenger) {
+	public BusinessTicket newTicket() {
 		return new BusinessTicket( passenger, new Seat(airplane, 1));
 	}
 

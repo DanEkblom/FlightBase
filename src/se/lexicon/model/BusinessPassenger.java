@@ -5,7 +5,7 @@ import se.lexicon.model.BusinessTicket;
 public class BusinessPassenger extends Passenger {
 
 	// Constructor of all properties
-	public BusinessPassenger(TicketBusiness ticket, String name, int age, GenderType gender, String fellowPassenger,
+	public BusinessPassenger(BusinessTicket ticket, String name, int age, GenderType gender, String fellowPassenger,
 			String passportNumber, String note, String foodAllergies) {
 
 		super(ticket, name, age, gender, fellowPassenger, passportNumber, note, foodAllergies);
@@ -13,7 +13,7 @@ public class BusinessPassenger extends Passenger {
 	}
 	
 	// Minimum Constructor
-	public BusinessPassenger(TicketBusiness ticket, String name, GenderType gender) {
+	public BusinessPassenger(BusinessTicket ticket, String name, GenderType gender) {
 		super(ticket, name, gender);
 	}
 

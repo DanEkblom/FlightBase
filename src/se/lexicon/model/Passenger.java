@@ -17,7 +17,7 @@ public abstract class Passenger {
 	private static int prevPassengerId;
 
 	// Constructor of all properties
-	public Passenger(TicketBusiness ticket, String name, int age, GenderType gender, String fellowPassenger,
+	public Passenger(BusinessTicket ticket, String name, int age, GenderType gender, String fellowPassenger,
 			String passportNumber, String note, String foodAllergies) {
 
 		this.ticket = ticket;
@@ -33,7 +33,7 @@ public abstract class Passenger {
 	}
 
 	// Minimum Constructor
-	public Passenger(TicketBusiness ticket, String name, GenderType gender) {
+	public Passenger(BusinessTicket ticket, String name, GenderType gender) {
 
 		this.ticket = ticket;
 		this.name = name;

@@ -155,16 +155,26 @@ public class OzSandbox {
 	}
 	public FoodItem pickEconomyFood() {
 		FoodItem foodItem = null;
-		System.out.println("Vänligen välj en huvudrätt ur business-menyn");
-		System.out.println("1:"+FoodItem.meatballs.toString());
-		System.out.println("2:"+FoodItem.bolognese.toString());
+		boolean isRunning = true;
+		while(isRunning) {
+			System.out.println("Vänligen välj en huvudrätt ur business-menyn");
+			System.out.println("1:"+FoodItem.meatballs.toString());
+			System.out.println("2:"+FoodItem.bolognese.toString());
 
-		option = scanner.next();
+			option = scanner.next();
 
-		switch(option) {
-		case "1": foodItem = FoodItem.meatballs;
-		case "2": foodItem = FoodItem.bolognese;
-		default : System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
+			switch(option) {
+			case "1":
+				foodItem = FoodItem.meatballs;
+				isRunning = false;
+				break;
+			case "2":
+				foodItem = FoodItem.bolognese;
+				isRunning = false;
+				break;
+			default :
+				System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
+			}
 		}
 
 		return foodItem;
@@ -190,10 +200,10 @@ public class OzSandbox {
 		name = scanner.next();
 		//TODO metod som genererar unikt newPAssengerID()
 		if (option.trim().equals(BUSINESS) ) {
-			return new BusinessPassenger(name, "?"); 
+			return new BusinessPassenger(name); 
 		}
 		else {
-			return new EconomyPassenger(name, "?");
+			return new EconomyPassenger(name);
 		}
 	}
 

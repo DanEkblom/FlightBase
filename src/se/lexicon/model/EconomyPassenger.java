@@ -1,6 +1,6 @@
 package se.lexicon.model;
 
-import sun.security.krb5.internal.Ticket;
+import .Ticket;
 
 public class EconomyPassenger extends Passenger {
 

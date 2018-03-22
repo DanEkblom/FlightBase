@@ -239,6 +239,7 @@ public class OzSandbox {
 	}
 
 	public Ticket newBusinessTicket() {
+		
 		return new Ticket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) , 20000, TicketType.BUSINESS);
 	}
 

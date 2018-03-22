@@ -10,6 +10,8 @@ import se.lexicon.model.Menu;
 import se.lexicon.model.OzSandbox;
 import se.lexicon.model.Passenger;
 import se.lexicon.model.PassengerType;
+import se.lexicon.model.Ticket;
+import se.lexicon.model.TicketType;
 import se.lexicon.ui.SystemUI;
 
 public class Main {
@@ -54,14 +56,36 @@ public class Main {
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
-    	*/ 	
     	
-    	Airplane cessna = new Airplane("Cessna320");
-    	if (!cessna.businessSeatsAvailable() && !cessna.economySeatsAvailable()) {
-    		System.out.println("Planet är fullt");
-    	} else {
-    		System.out.println("Det finns plats");
-    	}
+    	
+
+//    	Airplane cessna = new Airplane("Cessna320");
+//    	if (!cessna.businessSeatsAvailable() && !cessna.economySeatsAvailable()) {
+//    		System.out.println("Planet är fullt");
+//    	} else {
+//    		System.out.println("Det finns plats");
+//    	}
+    	
+//    	String name, PassengerType passengerType
+//    	Passenger passenger, Menu menu, int price, TicketType ticketType
+    	
+    	*/
+    	Passenger passenger = new Passenger("Dan", PassengerType.BUSINESS);
+    	FoodItem foodItem = new FoodItem("Dans favorit", 45);
+    	FoodItem foodItem2 = new FoodItem("Dans läsk", 15);
+    	
+    	//SystemUI ui = new SystemUI();
+    	//Ticket ticket = ui.newBusinessTicket();
+    	//OzSandbox oz = new OzSandbox();
+    	//Ticket ticket = oz.newBusinessTicket();
+    	
+    	
+    	//String ticketToString = ticket.toString();
+    	//System.out.println(ticketToString);
+    	
+    	Ticket ticket = new Ticket(new Passenger("Dan", PassengerType.BUSINESS), new Menu(foodItem, foodItem2), 500000, TicketType.BUSINESS, new Airplane("Dans plan") );
+    	System.out.println(ticket.toString());
+
     	
     }
 }

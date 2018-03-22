@@ -10,8 +10,17 @@ public class Menu {
 		this.beverage = beverage;
 	}
 	
+	//TODO
+	/*
+	 * Returns the cost of current meal and beverage 
+	 */
+	public int totalFoodCost(Menu menu) {
+		// hämta priset för meal och beverage; returnera summan
+		return 34;
+	}
+	
 	public String toString() {
-		return "Beställd meny:\n" + meal.toString() + "\n" + beverage.toString();
+		return "Beställd meny:\n• " + meal.toString() + "\n• " + beverage.toString();
 	}
 	
 }

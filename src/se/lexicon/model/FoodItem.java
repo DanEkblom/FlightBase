@@ -33,5 +33,13 @@ public class FoodItem {
 	public String toString() {
 		return this.name + ", " + price + "kr.";
 	}
+	
+	//TODO
+	/* 
+	 * Returns the price of foodItem
+	 */
+	public int itemPrice(FoodItem foodItem) {
+		return 45;
+	}
 
 }

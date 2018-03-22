@@ -30,29 +30,39 @@ public class Ticket {
 		}
 	}
 
-    /**
-     * Gets the ticket type
-     * @param ticketType Type of ticket
-     * @return ticketType;
-     */
-    public TicketType getTicketType() {
-    	return ticketType;
-    }
+	/**
+	 * Gets the ticket type
+	 * 
+	 * @param ticketType
+	 *            Type of ticket
+	 * @return ticketType;
+	 */
+	public TicketType getTicketType() {
+		return ticketType;
+	}
 
-    public String toString() {
-    	
-    	StringBuilder sb = new StringBuilder("Passagerare ");
-        sb.append(this.passenger.getName());
-        sb.append(" har bokat en \"");
-        sb.append(ticketType.toString().toLowerCase());
-        sb.append("\"-biljett för ");
-        sb.append(price);
-        sb.append(":-. Stolnumret är \"");
-        sb.append(ticketNumber);
-        sb.append("\". Ytterligare val:\n");
-        sb.append(menu.toString());
-        
-        return sb.toString();
-    }
-    
+	public String toString() {
+
+		StringBuilder sb = new StringBuilder("Passagerare: ");
+		sb.append(this.passenger.getName());
+		sb.append("\nBokning: \"");
+		sb.append(Utilities.ticketTypeToSwedish(ticketType, false));
+		sb.append("-biljett\"");
+		sb.append("\nStolsnummer: ");
+		sb.append(passenger.getSeatNo());
+		sb.append("\nBiljettnummer: ");
+		sb.append(ticketNumber);
+		sb.append("\n");
+		sb.append(menu.toString());
+		sb.append("\nTotalkostnad: ");
+		if (ticketType.equals(TicketType.BUSINESS)) {
+			sb.append(50000);
+		}else {
+			
+		}
+		sb.append(price);
+
+		return sb.toString();
+	}
+
 }

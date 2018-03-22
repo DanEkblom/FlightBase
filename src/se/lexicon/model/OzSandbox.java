@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import se.lexicon.exception.NoMoreSeatsException;
 import se.lexicon.model.Airplane;
 import se.lexicon.model.FoodItem;
 import se.lexicon.model.Menu;
@@ -31,17 +32,18 @@ public class OzSandbox {
 
 		// Try-with-resources to auto-close scanner on error or exit
 		try {
-
+			printSplash();
 			// Run at least once.
 			do {
 
 				// Inner loop error handling
 				try {
 
-					printSplash();
+
 					System.out.println("Hej och välkommen! Vad vill du göra?\n"
 							+ "1: Flyga Business Class\n"
 							+ "2: Flyga Economy class\n"
+							+ "3: Lista alla passagerare\n"
 							+ "0: Avsluta");
 
 					option = scanner.nextLine();
@@ -54,9 +56,7 @@ public class OzSandbox {
 					case "1":
 						System.out.println("Du har valt Business Class");
 						if( airplane.businessSeatsAvailable() ){
-
 							tickets.add( newBusinessTicket() );
-
 							//TODO: gör en snygg lista som visar vad kunden har valt som
 							//han kan bekräfta
 
@@ -80,6 +80,8 @@ public class OzSandbox {
 
 						break;
 
+					case "3":
+						printPassengers(airplane);
 					default:
 						System.out.println(option + " är ett ogiltigt val. Var god försök igen.");
 
@@ -87,6 +89,7 @@ public class OzSandbox {
 
 				} catch (Exception e) {
 					System.out.println("Exception caught in inner try : " + e.getMessage());
+					e.printStackTrace();
 
 				}//catch
 
@@ -102,7 +105,7 @@ public class OzSandbox {
 
 			// Any tasks needed for cleaning up/saving/etc should be performed here.
 			// The scanner auto-closes so don't worry about that.
-
+			printSplash();
 		}
 
 	}
@@ -125,72 +128,72 @@ public class OzSandbox {
 
 		while( !correctInput) {
 			option = scanner.nextLine();
-	
+
 			switch(option) {
-			
+
 			case "1":
 				foodItem = FoodItem.escargo;
 				correctInput = true;
 				break;
-				
+
 			case "2":
 				foodItem = FoodItem.frogLegs;
 				correctInput = true;
 				break;
-				
+
 			default : System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
 			}//switch
 		}//while
-		
+
 		return foodItem;
 	}
 
 	public FoodItem pickBusinessBeverage() {
 		FoodItem foodItem = null;
 		boolean correctInput = false;
-		
+
 		System.out.println("Vänligen välj något uppfriskande ur vår exklusiva dryckesmeny:");
 		System.out.println("1:" + FoodItem.wine.toString());
 		System.out.println("2:" + FoodItem.beer.toString());
 
 		while( !correctInput ) {
-			option = scanner.next();
+			option = scanner.nextLine();
 			switch(option) {
-			
+
 			case "1":
 				foodItem = FoodItem.wine;
 				correctInput = true;
 				break;
-				
+
 			case "2":
 				foodItem = FoodItem.beer;
 				correctInput = true;
 				break;
-				
+
 			default : System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
 			}
 		}
 		return foodItem;
 	}
-	
+
 	public FoodItem pickEconomyFood() {
 		FoodItem foodItem = null;
 		boolean correctInput = false;
-	
-			System.out.println("Vänligen välj en huvudrätt ur business-menyn");
-			System.out.println("1:"+FoodItem.meatballs.toString());
-			System.out.println("2:"+FoodItem.bolognese.toString());
+
+		System.out.println("Vänligen välj en huvudrätt ur economy-menyn");
+		System.out.println("1:"+FoodItem.meatballs.toString());
+		System.out.println("2:"+FoodItem.bolognese.toString());
 		while( !correctInput ) {
-			option = scanner.next();
+			option = scanner.nextLine();
 
 			switch(option) {
 			case "1":
 				foodItem = FoodItem.meatballs;
-				correctInput = false;
+				correctInput = true;
 				break;
 			case "2":
 				foodItem = FoodItem.bolognese;
-				correctInput = false;
+				correctInput = true;
 				break;
 			default :
 				System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
@@ -199,17 +202,17 @@ public class OzSandbox {
 
 		return foodItem;
 	}
-	
+
 	public FoodItem pickEconomyBeverage() {
 		FoodItem foodItem = null;
 		boolean correctInput = false;
-		
+
 		System.out.println("Vänligen välj något uppfriskande ur vår exklusiva dryckesmeny:");
 		System.out.println("1:" + FoodItem.water.toString());
 		System.out.println("2:" + FoodItem.lemonade.toString());
 
 		while ( !correctInput) {
-			option = scanner.next();
+			option = scanner.nextLine();
 			switch(option) {
 			case "1":
 				foodItem = FoodItem.water;
@@ -222,38 +225,61 @@ public class OzSandbox {
 			default : System.out.println("Du har angett ett ogiltigt val. Vänligen försök igen.");
 			}
 		}//while
-			return foodItem;
+		return foodItem;
 	}
 
 
 	public Passenger newPassenger() {
-		System.out.println("Vänligen ange namn:");
-		name = scanner.nextLine();
-		//TODO metod som genererar unikt newPAssengerID()
-		System.out.println(option);
-		if (option.trim().equals("1") ) {
-			return new Passenger(name, PassengerType.BUSINESS); 
+		if( airplane.businessSeatsAvailable() || airplane.economySeatsAvailable()) {
+
+			System.out.println("Vänligen ange namn:");
+			name = scanner.nextLine();
+
+			if (option.trim().equals(ECONOMY) )
+				if( airplane.economySeatsAvailable()) {
+					return new Passenger(name, PassengerType.ECONOMY); 
+				}
+				else {
+					offerOtherTicket(BUSINESS);
+				}
+			if (option.trim().equals(BUSINESS) ) {
+				if( airplane.businessSeatsAvailable()) {
+					return new Passenger(name, PassengerType.BUSINESS); 
+				}
+				else {
+					offerOtherTicket(BUSINESS);
+				}
+			}
 		}
-		else {
-			return new Passenger(name, PassengerType.ECONOMY);
-		}
+		return null;
 	}
 
-	public Ticket newBusinessTicket() {
-		
-		return new Ticket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) , 20000, TicketType.BUSINESS, airplane);
+	public Ticket newBusinessTicket(){
+		try {
+			return new Ticket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) , 20000, TicketType.BUSINESS, airplane);
+		}
+		catch (NoMoreSeatsException e){
+			offerOtherTicket(ECONOMY);
+		}
+		return null;
 	}
 
-	public Ticket newEconomyTicket() {
-		return new Ticket(newPassenger(), new Menu(pickEconomyFood(), pickEconomyBeverage() ) , 5000, TicketType.ECONOMY, airplane);
+	public Ticket newEconomyTicket(){
+		try {
+			return new Ticket(newPassenger(), new Menu(pickEconomyFood(), pickEconomyBeverage() ) , 5000, TicketType.ECONOMY, airplane);
+		}
+		catch( NoMoreSeatsException e) {
+			offerOtherTicket(BUSINESS);
+		}
+		return null;
 	}
 
 	public void offerOtherTicket(String ticketType) {
-	
+
 		if(ticketType.equals(BUSINESS)) {
 			System.out.println("Vi har tyvärr inga platser kvar i economy class.\n"
 					+ "Vill du istället köpa en biljett i business class? Det kostar bara fyra gånger så mycket.(j/n)");
-			option = scanner.next();
+			option = scanner.nextLine();
 
 			if(option.equals("j")) {
 				tickets.add(newBusinessTicket());
@@ -264,8 +290,8 @@ public class OzSandbox {
 		}
 		else {
 			System.out.println("Vi har tyvärr inga platser kvar i business class. Vill du istället köpa en biljett i economy class?\n"
-					+ "Sätena är lite hårdare och trängre, och film kan du glömma, men det kostar bara 500 kr.(j/n)");
-			option = scanner.next();
+					+ "Sätena är lite hårdare och trängre, och film kan du glömma, men det kostar bara 5000 kr.(j/n)");
+			option = scanner.nextLine();
 
 			if(option.equals("j")) {
 				tickets.add(newEconomyTicket());
@@ -273,6 +299,13 @@ public class OzSandbox {
 			else if(option.equals("n")) {
 				System.out.println("Vad tråkigt att höra. Glöm inte att ta del av alla heta erbjudanden vi kommer att spamma din mail med.");
 			}
+		}
+
+	}
+
+	public void printPassengers(Airplane airplane) {
+		for(Passenger p : airplane.getAirplaneSeats()) {
+			System.out.println(p.getName());
 		}
 
 	}

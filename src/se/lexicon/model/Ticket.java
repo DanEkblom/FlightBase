@@ -16,18 +16,13 @@ public class Ticket {
 	
 	private static int allTicketNumbers = 0;
 
-	public Ticket(Passenger passenger, Menu menu, int price, TicketType ticketType, Airplane airplane) {
+	public Ticket(Passenger passenger, Menu menu, int price, TicketType ticketType, Airplane airplane) throws NoMoreSeatsException {
 		this.passenger = passenger;
 		this.menu = menu;
 		this.price = price;
 		this.ticketType = ticketType;
 		ticketNumber = ++allTicketNumbers;
-		try {
-			airplane.addPassenger(passenger);
-		} catch (NoMoreSeatsException e) {
-			System.out.println("Planet är fullt");
-			//e.printStackTrace();
-		}
+		airplane.addPassenger(passenger);
 	}
 
 	/**

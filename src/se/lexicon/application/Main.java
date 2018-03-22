@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import se.lexicon.exception.NoMoreSeatsException;
 import se.lexicon.model.Airplane;
 import se.lexicon.model.FoodItem;
 import se.lexicon.model.Menu;
@@ -43,7 +44,7 @@ public class Main {
     
     	System.out.println(FoodItem.chicken.toString());
 */
-    	//new OzSandbox().start();
+    	
     	/*
     	Airplane airForceOne = new Airplane("Air Force One");
     	Passenger trump = new BusinessPassenger("Donald J Trump");
@@ -57,9 +58,10 @@ public class Main {
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	
+    	new OzSandbox().start();
+*/
+    	Airplane cessna = new Airplane("Cessna320");
     	
-
-//    	Airplane cessna = new Airplane("Cessna320");
 //    	if (!cessna.businessSeatsAvailable() && !cessna.economySeatsAvailable()) {
 //    		System.out.println("Planet är fullt");
 //    	} else {
@@ -69,22 +71,49 @@ public class Main {
 //    	String name, PassengerType passengerType
 //    	Passenger passenger, Menu menu, int price, TicketType ticketType
     	
-    	*/
-    	Passenger passenger = new Passenger("Dan", PassengerType.BUSINESS);
+    	/*
+    	Passenger busi1 = new Passenger("Dan", PassengerType.BUSINESS);
+    	Passenger busi2 = new Passenger("Pekka", PassengerType.BUSINESS);
+    	Passenger busi3 = new Passenger("Peio", PassengerType.BUSINESS);
+    	Passenger busi4 = new Passenger("Magdalena", PassengerType.BUSINESS);
+    	Passenger busi5 = new Passenger("Andreas", PassengerType.BUSINESS);
+    	Passenger busi6 = new Passenger("Kate", PassengerType.BUSINESS);
+
+    	Passenger eco1 = new Passenger("Linus", PassengerType.ECONOMY);
+    	Passenger eco2 = new Passenger("OmParKesh", PassengerType.ECONOMY);
+    	Passenger eco3 = new Passenger("Sverker", PassengerType.ECONOMY);
+    	Passenger eco4 = new Passenger("Valter", PassengerType.ECONOMY);
+    	Passenger eco5 = new Passenger("Ulf", PassengerType.ECONOMY);
+    	Passenger eco6 = new Passenger("Roger", PassengerType.ECONOMY);
+
     	FoodItem foodItem = new FoodItem("Dans favorit", 45);
     	FoodItem foodItem2 = new FoodItem("Dans läsk", 15);
-    	
+
+    	try {
+			cessna.addPassenger(busi1);
+			cessna.addPassenger(eco1);
+			cessna.addPassenger(busi2);
+			cessna.addPassenger(busi3);
+			cessna.addPassenger(busi4);
+			cessna.addPassenger(busi5);
+			
+
+		} catch (NoMoreSeatsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
+    	*/
     	//SystemUI ui = new SystemUI();
     	//Ticket ticket = ui.newBusinessTicket();
-    	//OzSandbox oz = new OzSandbox();
+    	new OzSandbox().start();
     	//Ticket ticket = oz.newBusinessTicket();
     	
     	
     	//String ticketToString = ticket.toString();
     	//System.out.println(ticketToString);
     	
-    	Ticket ticket = new Ticket(new Passenger("Dan", PassengerType.BUSINESS), new Menu(foodItem, foodItem2), 500000, TicketType.BUSINESS, new Airplane("Dans plan") );
-    	System.out.println(ticket.toString());
+    	//Ticket ticket = new Ticket(new Passenger("Dan", PassengerType.BUSINESS), new Menu(foodItem, foodItem2), 500000, TicketType.BUSINESS, new Airplane("Dans plan") );
+    	//System.out.println(ticket.toString());
 
     	
     }

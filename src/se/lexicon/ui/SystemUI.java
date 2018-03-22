@@ -101,7 +101,7 @@ public class SystemUI {
 
 			// Any tasks needed for cleaning up/saving/etc should be performed here.
 			// The scanner auto-closes so don't worry about that.
-
+			printSplash();
 		}
 
 	}

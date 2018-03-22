@@ -1,6 +1,7 @@
 package se.lexicon.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import se.lexicon.exception.NoMoreSeatsException;
@@ -8,7 +9,7 @@ import se.lexicon.exception.NoMoreSeatsException;
 public class Airplane {
 
 	private String airplaneName;
-	private List<Passenger> airplaneSeats = new ArrayList<Passenger>(10);
+	private List<Passenger> airplaneSeats = new LinkedList<Passenger>();
 	private int currentFreeBusinessSeat = 0;
 	private int currentFreeEconomySeat = 5;
 
@@ -20,6 +21,9 @@ public class Airplane {
 
 	public Airplane(String airplaneName) {
 		this.airplaneName = airplaneName;
+		for(int i=0; i<10; i++) {
+			airplaneSeats.add(new Passenger());
+		}
 	}
 
 	public Airplane(String airplaneName, List<Passenger> airplaneSeats) {
@@ -73,26 +77,19 @@ public class Airplane {
 		return sb.toString();
 	}
 
-	public boolean addPassenger(Passenger passenger) throws NoMoreSeatsException{
-		if(!businessSeatsAvailable() && !economySeatsAvailable()) {
-			throw new NoMoreSeatsException();
+	public void addPassenger(Passenger passenger) throws NoMoreSeatsException{
+		if( businessSeatsAvailable() && passenger.getPassengerType() == PassengerType.BUSINESS) {
+			passenger.setSeat(currentFreeBusinessSeat + 1);
+			airplaneSeats.add(currentFreeBusinessSeat, passenger);
+			airplaneSeats.remove(++currentFreeBusinessSeat);
 		}
-
-		if(passenger.getPassengerType() == PassengerType.BUSINESS) {
-			if(currentFreeBusinessSeat < 5) {
-				passenger.setSeat(currentFreeBusinessSeat + 1);
-				airplaneSeats.add(currentFreeBusinessSeat++, passenger);
-				return true;
-			}
-			else return false;
-		}
-
-		else if(currentFreeEconomySeat < 10) {
+		else if( economySeatsAvailable() && passenger.getPassengerType() == PassengerType.ECONOMY){
 			passenger.setSeat(currentFreeEconomySeat + 1);
 			airplaneSeats.add(currentFreeEconomySeat++, passenger);
-			return true;
+			airplaneSeats.remove(10);
 		}
-		return false;
+		
+		else throw new NoMoreSeatsException();
 
 	}//addPassenger
 
@@ -103,4 +100,6 @@ public class Airplane {
 	public boolean economySeatsAvailable() {
 		return (currentFreeEconomySeat < 10);
 	}//economySeatsAvailable
+	
+	
 }

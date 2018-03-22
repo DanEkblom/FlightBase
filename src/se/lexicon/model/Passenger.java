@@ -71,6 +71,9 @@ public class Passenger {
 		generatePassengerId();
 	}
 
+	public Passenger() {
+		
+	}
 	/*
 	 * Start of Getters
 	 * 
@@ -154,6 +157,7 @@ public class Passenger {
 	/*
 	 * Blank none-optional properties are ignored here
 	 */
+		
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		

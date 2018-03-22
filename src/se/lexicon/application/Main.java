@@ -54,7 +54,7 @@ public class Main {
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
-    	*/ 	
+    	
     	
     	Airplane cessna = new Airplane("Cessna320");
     	if (!cessna.businessSeatsAvailable() && !cessna.economySeatsAvailable()) {
@@ -62,6 +62,8 @@ public class Main {
     	} else {
     		System.out.println("Det finns plats");
     	}
+    	*/
+    	OzSandbox oz = new OzSandbox();
     	
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import se.lexicon.exception.NoMoreSeatsException;
 import se.lexicon.model.Airplane;
 import se.lexicon.model.FoodItem;
 import se.lexicon.model.Menu;
@@ -255,7 +256,12 @@ public class SystemUI {
 	public Ticket newBusinessTicket() {
 		Menu menu = new Menu(pickBusinessFood(), pickBusinessBeverage());
 		Passenger passenger = newPassenger(TicketType.BUSINESS);
-		airplane.addPassenger(passenger);
+		try {
+			airplane.addPassenger(passenger);
+		} catch (NoMoreSeatsException e) {
+			System.out.println("Planet är fullt.");
+			//e.printStackTrace();
+		}
 		return new Ticket(passenger, menu, 20000, TicketType.BUSINESS);
 	}
 

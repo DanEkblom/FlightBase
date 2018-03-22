@@ -241,11 +241,11 @@ public class OzSandbox {
 
 	public Ticket newBusinessTicket() {
 		
-		return new Ticket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) , 20000, TicketType.BUSINESS);
+		return new Ticket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) , 20000, TicketType.BUSINESS, airplane);
 	}
 
 	public Ticket newEconomyTicket() {
-		return new Ticket(newPassenger(), new Menu(pickEconomyFood(), pickEconomyBeverage() ) , 5000, TicketType.ECONOMY);
+		return new Ticket(newPassenger(), new Menu(pickEconomyFood(), pickEconomyBeverage() ) , 5000, TicketType.ECONOMY, airplane);
 	}
 
 	public void offerOtherTicket(String ticketType) {

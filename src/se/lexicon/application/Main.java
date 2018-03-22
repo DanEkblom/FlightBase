@@ -58,16 +58,7 @@ public class Main {
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	
     	
-<<<<<<< HEAD
-    	Airplane cessna = new Airplane("Cessna320");
-    	if (!cessna.businessSeatsAvailable() && !cessna.economySeatsAvailable()) {
-    		System.out.println("Planet är fullt");
-    	} else {
-    		System.out.println("Det finns plats");
-    	}
-    	*/
-    	OzSandbox oz = new OzSandbox();
-=======
+
 //    	Airplane cessna = new Airplane("Cessna320");
 //    	if (!cessna.businessSeatsAvailable() && !cessna.economySeatsAvailable()) {
 //    		System.out.println("Planet är fullt");
@@ -78,6 +69,7 @@ public class Main {
 //    	String name, PassengerType passengerType
 //    	Passenger passenger, Menu menu, int price, TicketType ticketType
     	
+    	*/
     	Passenger passenger = new Passenger("Dan", PassengerType.BUSINESS);
     	FoodItem foodItem = new FoodItem("Dans favorit", 45);
     	FoodItem foodItem2 = new FoodItem("Dans läsk", 15);
@@ -93,7 +85,7 @@ public class Main {
     	
     	Ticket ticket = new Ticket(new Passenger("Dan", PassengerType.BUSINESS), new Menu(foodItem, foodItem2), 500000, TicketType.BUSINESS, new Airplane("Dans plan") );
     	System.out.println(ticket.toString());
->>>>>>> c75cbed2810aad42b7c654ccf0d5409def03f6a7
+
     	
     }
 }

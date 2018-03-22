@@ -254,20 +254,8 @@ public class SystemUI {
 	}
 
 	public Ticket newBusinessTicket() {
-<<<<<<< HEAD
-		Menu menu = new Menu(pickBusinessFood(), pickBusinessBeverage());
-		Passenger passenger = newPassenger(TicketType.BUSINESS);
-		try {
-			airplane.addPassenger(passenger);
-		} catch (NoMoreSeatsException e) {
-			System.out.println("Planet är fullt.");
-			//e.printStackTrace();
-		}
-		return new Ticket(passenger, menu, 20000, TicketType.BUSINESS);
-=======
 		return new Ticket(newPassenger(TicketType.BUSINESS), new Menu(pickBusinessFood(), pickBusinessBeverage()),
 				20000, TicketType.BUSINESS, airplane);
->>>>>>> c75cbed2810aad42b7c654ccf0d5409def03f6a7
 	}
 
 	public Ticket newEconomyTicket() {

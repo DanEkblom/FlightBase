@@ -254,6 +254,7 @@ public class SystemUI {
 	}
 
 	public Ticket newBusinessTicket() {
+<<<<<<< HEAD
 		Menu menu = new Menu(pickBusinessFood(), pickBusinessBeverage());
 		Passenger passenger = newPassenger(TicketType.BUSINESS);
 		try {
@@ -263,11 +264,15 @@ public class SystemUI {
 			//e.printStackTrace();
 		}
 		return new Ticket(passenger, menu, 20000, TicketType.BUSINESS);
+=======
+		return new Ticket(newPassenger(TicketType.BUSINESS), new Menu(pickBusinessFood(), pickBusinessBeverage()),
+				20000, TicketType.BUSINESS, airplane);
+>>>>>>> c75cbed2810aad42b7c654ccf0d5409def03f6a7
 	}
 
 	public Ticket newEconomyTicket() {
-		return new Ticket(newPassenger(TicketType.ECONOMY), new Menu(pickEconomyFood(), pickEconomyBeverage()), 5000,
-				TicketType.ECONOMY);
+		return new Ticket(newPassenger(TicketType.ECONOMY), new Menu(pickEconomyFood(), pickEconomyBeverage()),
+				5000, TicketType.ECONOMY, airplane);
 	}
 
 	public void offerOtherTicket(TicketType ticketType) {

@@ -15,6 +15,9 @@ public class Ticket {
 	private Airplane airplane;
 	
 	private static int allTicketNumbers = 0;
+	
+	public final static int BusinessTicket = 20000;
+	public final static int EconomyTicket = 5000;
 
 	public Ticket(Passenger passenger, Menu menu, int price, TicketType ticketType, Airplane airplane) throws NoMoreSeatsException {
 		this.passenger = passenger;
@@ -60,22 +63,25 @@ public class Ticket {
 
 		StringBuilder sb = new StringBuilder("Passagerare: ");
 		sb.append(this.passenger.getName());
-		sb.append("\nBokning: \"");
+		sb.append("\nBokning: ");
 		sb.append(Utilities.ticketTypeToSwedish(ticketType, false));
-		sb.append("-biljett\"");
-		sb.append("\nStolsnummer: ");
+		sb.append("-biljett");
+		sb.append("\n\nStolsnummer: ");
 		sb.append(passenger.getSeatNo());
 		sb.append("\nBiljettnummer: ");
 		sb.append(ticketNumber);
-		sb.append("\n");
-		sb.append(menu.toString());
-		sb.append("\nTotalkostnad: ");
+		
+		sb.append("\n\n");
 		if (ticketType.equals(TicketType.BUSINESS)) {
-			sb.append(50000);
+			sb.append(menu.menuItems());
+			sb.append("\n\nTotalkostnad: ");
+			sb.append(BusinessTicket);
 		}else {
-			
+			sb.append(menu.toString());
+			sb.append("\n\nTotalkostnad: ");
+			sb.append(menu.totalFoodCost(menu) + EconomyTicket);
 		}
-		sb.append(price);
+		sb.append(" kr");
 
 		return sb.toString();
 	}

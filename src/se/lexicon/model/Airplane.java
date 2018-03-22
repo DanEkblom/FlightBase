@@ -1,6 +1,5 @@
 package se.lexicon.model;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,13 +14,16 @@ public class Airplane {
 
 	/**
 	 * Airplane Constructor
-	 * @param airplaneName Airplane unique identifier
-	 * @param airplaneSeats Total number of seats available
+	 * 
+	 * @param airplaneName
+	 *            Airplane unique identifier
+	 * @param airplaneSeats
+	 *            Total number of seats available
 	 */
 
 	public Airplane(String airplaneName) {
 		this.airplaneName = airplaneName;
-		for(int i=0; i<10; i++) {
+		for (int i = 0; i < 10; i++) {
 			airplaneSeats.add(new Passenger());
 		}
 	}
@@ -33,6 +35,7 @@ public class Airplane {
 
 	/**
 	 * Returns airplane name. Useful in toStrings.
+	 * 
 	 * @return airplaneName
 	 */
 	public String getAirplaneName() {
@@ -41,7 +44,9 @@ public class Airplane {
 
 	/**
 	 * Sets airplane name. Useful when creating new Airplanes.
-	 * @param airplaneName Airplane name
+	 * 
+	 * @param airplaneName
+	 *            Airplane name
 	 */
 	// TODO: Redundant method?
 	public void setAirplaneName(String airplaneName) {
@@ -49,7 +54,9 @@ public class Airplane {
 	}
 
 	/**
-	 * Returns list of airplaneSeats. Used to determine if the plane is fully booked or not.
+	 * Returns list of airplaneSeats. Used to determine if the plane is fully booked
+	 * or not.
+	 * 
 	 * @return airplaneSeats
 	 */
 	public List<Passenger> getAirplaneSeats() {
@@ -57,41 +64,33 @@ public class Airplane {
 	}
 
 	/**
-	 * Sets list of airplaneSeats. Used to determine if the plane is fully booked or not.
-	 * @param airplaneSeats Number of airplane seats
+	 * Sets list of airplaneSeats. Used to determine if the plane is fully booked or
+	 * not.
+	 * 
+	 * @param airplaneSeats
+	 *            Number of airplane seats
 	 */
-	// TODO: Redundant method? Useful when creating new Airplanes with different number of seats.
+	// TODO: Redundant method? Useful when creating new Airplanes with different
+	// number of seats.
 	public void setAirplaneSeats(List<Passenger> airplaneSeats) {
 		this.airplaneSeats = airplaneSeats;
 	}
 
-	@Override
-	public String toString() {
-		//return "Flygplan " + airplaneName + " har " + airplaneSeats.size() + " bokade platser.";
-		StringBuilder sb = new StringBuilder("Flygplan ");
-		sb.append(airplaneName);
-		sb.append(" har ");
-		sb.append(airplaneSeats.size());
-		sb.append(" bokade platser.");
-
-		return sb.toString();
-	}
-
-	public void addPassenger(Passenger passenger) throws NoMoreSeatsException{
-		if( businessSeatsAvailable() && passenger.getPassengerType() == PassengerType.BUSINESS) {
+	public void addPassenger(Passenger passenger) throws NoMoreSeatsException {
+		if (businessSeatsAvailable() && passenger.getPassengerType() == PassengerType.BUSINESS) {
 			passenger.setSeat(currentFreeBusinessSeat + 1);
 			airplaneSeats.add(currentFreeBusinessSeat, passenger);
 			airplaneSeats.remove(++currentFreeBusinessSeat);
-		}
-		else if( economySeatsAvailable() && passenger.getPassengerType() == PassengerType.ECONOMY){
+		} else if (economySeatsAvailable() && passenger.getPassengerType() == PassengerType.ECONOMY) {
 			passenger.setSeat(currentFreeEconomySeat + 1);
 			airplaneSeats.add(currentFreeEconomySeat++, passenger);
 			airplaneSeats.remove(10);
 		}
-		
-		else throw new NoMoreSeatsException();
 
-	}//addPassenger
+		else
+			throw new NoMoreSeatsException();
+
+	}// addPassenger
 
 	public boolean businessSeatsAvailable() {
 		return (currentFreeBusinessSeat < 5);
@@ -99,7 +98,52 @@ public class Airplane {
 
 	public boolean economySeatsAvailable() {
 		return (currentFreeEconomySeat < 10);
-	}//economySeatsAvailable
+	}// economySeatsAvailable
+
 	
+	// TODO Sammanfattning av det som finns i flygplanet och som har blivit sålt.
+	// Inklusive den vinst (30%) av totalen som bolaget gör
 	
+	@Override
+	public String toString() {
+
+		// Airplane-data:
+		StringBuilder sb = new StringBuilder("Flygplan: ");
+		sb.append(airplaneName);
+		sb.append("\nAntal säten: ");
+		sb.append(airplaneSeats.size());
+
+		// Count of booked Business and Economy-seats
+		int businessSeats = 0;
+		int economySeats = 0;
+		for (int i = 0; i < airplaneSeats.size(); i++) {
+			if (airplaneSeats.get(i).getSeatNo() != 0) {
+				if (airplaneSeats.get(i).getPassengerType() == PassengerType.BUSINESS) {
+					businessSeats++;
+				} else {
+					economySeats++;
+				}
+			}
+		}
+		if (businessSeats + economySeats == 0) {
+			sb.append("\nBokningar: saknas");
+		} else {
+			if (businessSeats > 0) {
+				sb.append("\nBokade business-platser: ");
+				sb.append(businessSeats);
+			}
+			if (economySeats > 0) {
+				sb.append("\nBokade ekonomiplatser: ");
+				sb.append(economySeats);
+			}
+		}
+		
+		//Skapa en lista på alla bokade passagerare:
+		// Kanske använda toString för Ticket-instanserna
+		// Räkna samtidigt ihop samtliga inkomster och
+		// i slutet sammanfatta som totalinkomst resp. totalvinst (30%)
+
+		return sb.toString();
+	}
+
 }

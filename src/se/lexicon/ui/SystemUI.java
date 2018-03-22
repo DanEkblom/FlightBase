@@ -121,8 +121,8 @@ public class SystemUI {
 		boolean correctInput = false;
 
 		System.out.println("Vänligen välj en huvudrätt ur business-menyn");
-		System.out.println("1:" + FoodItem.escargo.toString());
-		System.out.println("2:" + FoodItem.frogLegs.toString());
+		System.out.println("1: " + FoodItem.escargo.toString());
+		System.out.println("2: " + FoodItem.frogLegs.toString());
 
 		while (!correctInput) {
 			option = scanner.nextLine().trim();
@@ -187,8 +187,8 @@ public class SystemUI {
 		boolean correctInput = false;
 
 		System.out.println("Vänligen välj en huvudrätt ur economy-menyn");
-		System.out.println("1:" + FoodItem.meatballs.toString());
-		System.out.println("2:" + FoodItem.bolognese.toString());
+		System.out.println("1: " + FoodItem.meatballs.toString());
+		System.out.println("2: " + FoodItem.bolognese.toString());
 
 		option = scanner.nextLine().trim();
 
@@ -218,8 +218,8 @@ public class SystemUI {
 		boolean correctInput = false;
 
 		System.out.println("Vänligen välj något uppfriskande ur vår dryckesmeny:");
-		System.out.println("1:" + FoodItem.water.toString());
-		System.out.println("2:" + FoodItem.lemonade.toString());
+		System.out.println("1: " + FoodItem.water.toString());
+		System.out.println("2: " + FoodItem.lemonade.toString());
 
 		option = scanner.nextLine().trim();
 
@@ -254,13 +254,21 @@ public class SystemUI {
 	}
 
 	public Ticket newBusinessTicket() {
-		return new Ticket(newPassenger(TicketType.BUSINESS), new Menu(pickBusinessFood(), pickBusinessBeverage()),
-				20000, TicketType.BUSINESS, airplane);
+		try {
+			return new Ticket(newPassenger(TicketType.BUSINESS), new Menu(pickBusinessFood(), pickBusinessBeverage()),
+					Ticket.BusinessTicket, TicketType.BUSINESS, airplane);
+		} catch (NoMoreSeatsException e) {
+			return null;
+		}
 	}
 
 	public Ticket newEconomyTicket() {
-		return new Ticket(newPassenger(TicketType.ECONOMY), new Menu(pickEconomyFood(), pickEconomyBeverage()),
-				5000, TicketType.ECONOMY, airplane);
+		try {
+			return new Ticket(newPassenger(TicketType.ECONOMY), new Menu(pickEconomyFood(), pickEconomyBeverage()),
+					Ticket.EconomyTicket, TicketType.ECONOMY, airplane);
+		} catch (NoMoreSeatsException e) {
+			return null;
+		}
 	}
 
 	public void offerOtherTicket(TicketType ticketType) {

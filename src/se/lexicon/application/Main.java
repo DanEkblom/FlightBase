@@ -21,18 +21,18 @@ public class Main {
     /*
     	List<String> example = new ArrayList<>();
     	example.add("Ett");
-    	example.add("Tv�");
+    	example.add("Tvï¿½");
     	example.add("Tre");
     	example.add("Fyra");
     	
 //    	for(String text : example) {
-//    		if(text.equalsIgnoreCase("tv�")) example.remove(text);
+//    		if(text.equalsIgnoreCase("tvï¿½")) example.remove(text);
 //    	}
     	
     	Iterator<String> it = example.iterator();
     	while(it.hasNext()) {
     		String current = it.next();
-    		if(current.equalsIgnoreCase("tv�")) it.remove();
+    		if(current.equalsIgnoreCase("tvï¿½")) it.remove();
     	}
     	
     	example.forEach(System.out::println);
@@ -60,10 +60,10 @@ public class Main {
     	
     	new OzSandbox().start();
 */
-    	Airplane cessna = new Airplane("Cessna320");
+
     	
 //    	if (!cessna.businessSeatsAvailable() && !cessna.economySeatsAvailable()) {
-//    		System.out.println("Planet �r fullt");
+//    		System.out.println("Planet är fullt");
 //    	} else {
 //    		System.out.println("Det finns plats");
 //    	}
@@ -87,7 +87,7 @@ public class Main {
     	Passenger eco6 = new Passenger("Roger", PassengerType.ECONOMY);
 
     	FoodItem foodItem = new FoodItem("Dans favorit", 45);
-    	FoodItem foodItem2 = new FoodItem("Dans l�sk", 15);
+    	FoodItem foodItem2 = new FoodItem("Dans läsk", 15);
 
     	try {
 			cessna.addPassenger(busi1);
@@ -105,9 +105,36 @@ public class Main {
     	*/
     	//SystemUI ui = new SystemUI();
     	//Ticket ticket = ui.newBusinessTicket();
-    	new OzSandbox().start();
+    	//                                              new OzSandbox().start();
     	//Ticket ticket = oz.newBusinessTicket();
+  
+    	Airplane cessna = new Airplane("Cessna320");
+    	System.out.println(cessna.toString());
     	
+    	
+    	Passenger passenger = new Passenger("Dan", PassengerType.ECONOMY);
+    	FoodItem foodItem = new FoodItem("Dans favorit", 45);
+    	FoodItem foodItem2 = new FoodItem("Dans läsk", 15);
+    	
+    	//SystemUI ui = new SystemUI();
+    	//Ticket ticket = ui.newBusinessTicket();
+    	//OzSandbox oz = new OzSandbox();
+    	//Ticket ticket = oz.newBusinessTicket();
+    	  	
+    	//String ticketToString = ticket.toString();
+    	//System.out.println(ticketToString);
+    	
+    	Ticket ticket = null;
+		try {
+			ticket = new Ticket(new Passenger("Dan", PassengerType.ECONOMY),
+					new Menu(foodItem, foodItem2),
+					5000, TicketType.ECONOMY, new Airplane("Dans plan") );
+		} catch (NoMoreSeatsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	System.out.println(ticket.toString());  	
     	
     	//String ticketToString = ticket.toString();
     	//System.out.println(ticketToString);

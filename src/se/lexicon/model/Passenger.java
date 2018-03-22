@@ -8,17 +8,17 @@ import se.lexicon.model.Ticket;
 
 public class Passenger {
 
-	Ticket ticket;
-	String name;
-	int age;
-	int passengerId;
-	int seatNo;
-	PassengerType passengerType; 
-	GenderType gender;
-	String fellowPassenger;
-	String passportNumber;
-	String note;
-	String foodAllergies; // GLUTEN, LACTOS, NUTS, ETC.
+	private Ticket ticket;
+	private String name;
+	private int age;
+	private int passengerId;
+	private int seatNo;
+	private PassengerType passengerType; 
+	private GenderType gender;
+	private String fellowPassenger;
+	private String passportNumber;
+	private String note;
+	private String foodAllergies; // GLUTEN, LACTOS, NUTS, ETC.
 	
 	
 	private static int prevPassengerId;

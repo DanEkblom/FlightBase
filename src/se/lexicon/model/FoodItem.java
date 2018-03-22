@@ -2,8 +2,8 @@ package se.lexicon.model;
 
 public class FoodItem {
 
-	String name;
-	int price;
+	private String name;
+	private int price;
 
 	public FoodItem(String name, int price) {
 		this.name = name;
@@ -38,8 +38,12 @@ public class FoodItem {
 	/* 
 	 * Returns the price of foodItem
 	 */
-	public int itemPrice(FoodItem foodItem) {
-		return 45;
+	public int getPrice() {
+		return price;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 }

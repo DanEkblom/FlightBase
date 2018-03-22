@@ -249,7 +249,7 @@ public class OzSandbox {
 	}
 
 	public void offerOtherTicket(String ticketType) {
-		String ticketString = "";
+	
 		if(ticketType.equals(BUSINESS)) {
 			System.out.println("Vi har tyvärr inga platser kvar i economy class.\n"
 					+ "Vill du istället köpa en biljett i business class? Det kostar bara fyra gånger så mycket.(j/n)");

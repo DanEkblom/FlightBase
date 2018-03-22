@@ -2,16 +2,13 @@ package se.lexicon.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import se.lexicon.exception.NoMoreSeatsException;
 
 public class Airplane {
 
-	String airplaneName;
-	List<Passenger> airplaneSeats = new ArrayList<Passenger>(10);
-	Map<Integer, Passenger> airplaneMap = new TreeMap<Integer, Passenger>();
+	private String airplaneName;
+	private List<Passenger> airplaneSeats = new ArrayList<Passenger>(10);
 	private int currentFreeBusinessSeat = 0;
 	private int currentFreeEconomySeat = 5;
 

@@ -7,14 +7,14 @@ import se.lexicon.exception.NoMoreSeatsException;
  */
 public class Ticket {
 
-	protected Passenger passenger;
-	protected Menu menu;
-	protected int ticketNumber;
-	protected TicketType ticketType;
-	protected int price;
+	private Passenger passenger;
+	private Menu menu;
+	private int ticketNumber;
+	private TicketType ticketType;
+	private int price;
 	private Airplane airplane;
 	
-	protected static int allTicketNumbers = 0;
+	private static int allTicketNumbers = 0;
 
 	public Ticket(Passenger passenger, Menu menu, int price, TicketType ticketType, Airplane airplane) {
 		this.passenger = passenger;
@@ -40,7 +40,27 @@ public class Ticket {
 	public TicketType getTicketType() {
 		return ticketType;
 	}
-
+	
+	public int getPrice() {
+		return price;
+	}
+	
+	public Airplane getAirplane() {
+		return airplane;
+	}
+	
+	public int getTicketNumber(){
+		return ticketNumber;
+	}
+	
+	public Passenger getPassenger() {
+		return passenger;
+	}
+	
+	public Menu getMenu() {
+		return menu;
+	}
+	
 	public String toString() {
 
 		StringBuilder sb = new StringBuilder("Passagerare: ");

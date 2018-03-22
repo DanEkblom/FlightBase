@@ -15,8 +15,7 @@ public class Menu {
 	 * Returns the cost of current meal and beverage 
 	 */
 	public int totalFoodCost(Menu menu) {
-		// hämta priset för meal och beverage; returnera summan
-		return 34;
+		return meal.getPrice() + beverage.getPrice();
 	}
 	
 	public String toString() {

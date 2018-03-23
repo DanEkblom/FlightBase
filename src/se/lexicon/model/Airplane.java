@@ -46,11 +46,11 @@ public class Airplane {
 
 	/**
 	 * Sets airplane name. Useful when creating new Airplanes.
+	 * Redundant in basic/current version of the booking system.
 	 * 
 	 * @param airplaneName
 	 *            Airplane name
 	 */
-	// TODO: Redundant method?
 	public void setAirplaneName(String airplaneName) {
 		this.airplaneName = airplaneName;
 	}
@@ -67,7 +67,7 @@ public class Airplane {
 
 	/**
 	 * Sets list of airplaneSeats. Used to determine if the plane is fully booked or
-	 * not.
+	 * not. Redundant in current version of the booking system.
 	 * 
 	 * @param airplaneSeats
 	 *            Number of airplane seats
@@ -78,6 +78,13 @@ public class Airplane {
 		this.airplaneSeats = airplaneSeats;
 	}
 
+	/**
+	 * Method to add a passenger to the airplane. Includes logic to offer 
+	 * a different kind of ticket if the chosen ticket seats are full.
+	 *  
+	 * @param passenger
+	 * @throws NoMoreSeatsException
+	 */
 	public void addPassenger(Passenger passenger) throws NoMoreSeatsException {
 		if (businessSeatsAvailable() && passenger.getPassengerType() == PassengerType.BUSINESS) {
 			passenger.setSeat(currentFreeBusinessSeat + 1);
@@ -92,15 +99,23 @@ public class Airplane {
 		else
 			throw new NoMoreSeatsException();
 
-	}// addPassenger
+	}
 
+	/**
+	 * Returns true/false when checking for free Business seats
+	 * @return
+	 */
 	public boolean businessSeatsAvailable() {
 		return (currentFreeBusinessSeat < 5);
 	}
 
+	/**
+	 * Returns true/false when checking for free Economy seats
+	 * @return
+	 */
 	public boolean economySeatsAvailable() {
 		return (currentFreeEconomySeat < 10);
-	}// economySeatsAvailable
+	}
 
 	@Override
 	public String toString() {

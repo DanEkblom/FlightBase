@@ -58,7 +58,7 @@ public class Main {
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
 */    	
-    	new OzSandbox().start();
+
 
 
     	
@@ -151,14 +151,9 @@ public class Main {
     	//String ticketToString = ticket.toString();
 
     	//Ticket ticket = new Ticket(new Passenger("Dan", PassengerType.BUSINESS), new Menu(foodItem, foodItem2), 500000, TicketType.BUSINESS, new Airplane("Dans plan") );
-    	//System.out.println(ticket.toString());
-<<<<<<< HEAD
+    	//System.out.println(ticket.toString());<<<<<<< HEAD
 
-    	new OzSandbox().start();
-=======
-*/
-    	new OzSandbox().start();
+ 	new OzSandbox().start();
     	
->>>>>>> ozgur
     }
 }

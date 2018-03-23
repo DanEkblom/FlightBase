@@ -78,7 +78,7 @@ public class Airplane {
 		this.airplaneSeats = airplaneSeats;
 	}
 
-<<<<<<< HEAD
+
 	/**
 	 * Method to add a passenger to the airplane. Includes logic to offer 
 	 * a different kind of ticket if the chosen ticket seats are full.
@@ -86,13 +86,11 @@ public class Airplane {
 	 * @param passenger
 	 * @throws NoMoreSeatsException
 	 */
-	public void addPassenger(Passenger passenger) throws NoMoreSeatsException {
-		if (businessSeatsAvailable() && passenger.getPassengerType() == PassengerType.BUSINESS) {
-=======
+
 	public void addPassenger(Passenger passenger){
 
 		if (passenger.getPassengerType() == PassengerType.BUSINESS) {
->>>>>>> ozgur
+
 			passenger.setSeat(currentFreeBusinessSeat + 1);
 			airplaneSeats.add(currentFreeBusinessSeat, passenger);
 			airplaneSeats.remove(++currentFreeBusinessSeat);
@@ -104,9 +102,8 @@ public class Airplane {
 			airplaneSeats.remove(10);
 		}
 
-<<<<<<< HEAD
-		else
-			throw new NoMoreSeatsException();
+
+
 
 	}
 
@@ -114,14 +111,11 @@ public class Airplane {
 	 * Returns true/false when checking for free Business seats
 	 * @return
 	 */
-=======
-	}// addPassenger
-
 	public boolean seatsAvailable(){
 		return ( businessSeatsAvailable() || economySeatsAvailable() );
 			
 	}
->>>>>>> ozgur
+
 	public boolean businessSeatsAvailable() {
 		return (currentFreeBusinessSeat < 5);
 	}
@@ -186,16 +180,8 @@ public class Airplane {
 				sb.append(economySeats);
 			}
 		}
-<<<<<<< HEAD
-		
-		sb.append(passengerSummary.toString());
-=======
 
-		//Skapa en lista på alla bokade passagerare:
-		// Kanske använda toString för Ticket-instanserna
-		// Räkna samtidigt ihop samtliga inkomster och
-		// i slutet sammanfatta som totalinkomst resp. totalvinst (30%)
->>>>>>> ozgur
+		sb.append(passengerSummary.toString());
 
 		return sb.toString();
 	}

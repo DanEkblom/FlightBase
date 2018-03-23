@@ -261,7 +261,7 @@ public class SystemUI {
 	public Ticket newBusinessTicket() {
 		try {
 			return new Ticket(newPassenger(TicketType.BUSINESS), new Menu(pickBusinessFood(), pickBusinessBeverage()),
-					Ticket.BusinessTicket, TicketType.BUSINESS, airplane);
+					Ticket.BUSINESSTICKET, TicketType.BUSINESS, airplane);
 		} catch (NoMoreSeatsException e) {
 			return null;
 		}
@@ -270,7 +270,7 @@ public class SystemUI {
 	public Ticket newEconomyTicket() {
 		try {
 			return new Ticket(newPassenger(TicketType.ECONOMY), new Menu(pickEconomyFood(), pickEconomyBeverage()),
-					Ticket.EconomyTicket, TicketType.ECONOMY, airplane);
+					Ticket.ECONOMYTICKET, TicketType.ECONOMY, airplane);
 		} catch (NoMoreSeatsException e) {
 			return null;
 		}

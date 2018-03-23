@@ -152,7 +152,13 @@ public class Main {
 
     	//Ticket ticket = new Ticket(new Passenger("Dan", PassengerType.BUSINESS), new Menu(foodItem, foodItem2), 500000, TicketType.BUSINESS, new Airplane("Dans plan") );
     	//System.out.println(ticket.toString());
+<<<<<<< HEAD
 
     	new OzSandbox().start();
+=======
+*/
+    	new OzSandbox().start();
+    	
+>>>>>>> ozgur
     }
 }

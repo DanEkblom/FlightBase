@@ -16,6 +16,10 @@ public class Menu {
 	public int totalFoodCost(Menu menu) {
 		return meal.getPrice() + beverage.getPrice();
 	}
+	
+	public int getPrice() {
+		return beverage.getPrice() + meal.getPrice();
+	}
 		
 	/*
 	 * Returns a menu with food-item names only for Business-passengers

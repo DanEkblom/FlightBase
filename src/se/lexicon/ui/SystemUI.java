@@ -22,9 +22,14 @@ public class SystemUI {
 	boolean businessTicket;
 	boolean isRunning;
 
-	Airplane airplane = new Airplane("Boeing A320");
+	List<Ticket> tickets;
+	
+	Airplane airplane;
 
-	List<Ticket> tickets = new ArrayList<Ticket>();
+	public SystemUI() {
+		tickets = new ArrayList<Ticket>();
+		airplane = new Airplane("Cessna", tickets);
+	}
 
 	// Start the applications UI
 	public void start() {

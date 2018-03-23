@@ -10,6 +10,7 @@ public class Airplane {
 
 	private String airplaneName;
 	private List<Passenger> airplaneSeats = new LinkedList<Passenger>();
+	private List<Ticket> tickets;
 	private int currentFreeBusinessSeat = 0;
 	private int currentFreeEconomySeat = 5;
 
@@ -28,10 +29,10 @@ public class Airplane {
 			airplaneSeats.add(new Passenger());
 		}
 	}
-
-	public Airplane(String airplaneName, List<Passenger> airplaneSeats) {
-		this.airplaneName = airplaneName;
-		this.airplaneSeats = airplaneSeats;
+	
+	public Airplane(String name, List<Ticket> tickets) {
+		this.airplaneName = name;
+		this.tickets = tickets;
 	}
 
 	/**

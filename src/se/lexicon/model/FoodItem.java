@@ -42,6 +42,9 @@ public class FoodItem {
 		return price;
 	}
 	
+	/* 
+	 * Returns the name of foodItem
+	 */
 	public String getName() {
 		return name;
 	}

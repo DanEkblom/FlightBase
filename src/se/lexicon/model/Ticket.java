@@ -39,22 +39,42 @@ public class Ticket {
 		return ticketType;
 	}
 	
+	/**
+	 * Returns price, type integer
+	 * @return price
+	 */
 	public int getPrice() {
 		return price;
 	}
 	
+	/**
+	 * Returns airplane, type Airplane
+	 * @return airplane
+	 */
 	public Airplane getAirplane() {
 		return airplane;
 	}
 	
+	/**
+	 * Returns the ticket number, type integer
+	 * @return ticketNumber
+	 */
 	public int getTicketNumber(){
 		return ticketNumber;
 	}
 	
+	/**
+	 * Returns the passenger, type Passenger
+	 * @return airplane
+	 */
 	public Passenger getPassenger() {
 		return passenger;
 	}
 	
+	/**
+	 * Returns the menu, type Menu
+	 * @return menu
+	 */
 	public Menu getMenu() {
 		return menu;
 	}

@@ -149,14 +149,13 @@ public class Passenger {
 		this.foodAllergies = Utilities.fixTextInput(foodAllergies, false);
 	}
 
-	public void generatePassengerId() {
+	private void generatePassengerId() {
 		passengerId = ++prevPassengerId;
 	}
 	
 	/*
 	 * Blank none-optional properties are ignored here
-	 */
-		
+	 */	
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		

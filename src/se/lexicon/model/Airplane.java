@@ -141,6 +141,9 @@ public class Airplane {
 			passengerSummary.append(pList.get(i).toString());
 		}
 		
+		System.out.println(pList.get(0).getTicket());// .toString()); // .getTicket().toString());
+		
+		
 		if (businessSeats + economySeats == 0) {
 			sb.append("\nBokningar: saknas");
 		} else {

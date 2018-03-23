@@ -113,8 +113,8 @@ public class Main {
     	Passenger passenger = new Passenger("Dan", PassengerType.BUSINESS);
     	Passenger passenger2 = new Passenger("Pekka", PassengerType.ECONOMY);
     	Passenger passenger3 = new Passenger("Özgür", PassengerType.ECONOMY);
-    	FoodItem foodItem = new FoodItem("Dans favorit", 45);
-    	FoodItem foodItem2 = new FoodItem("Dans läsk", 15);
+//    	FoodItem foodItem = new FoodItem("Dans favorit", 45);
+//    	FoodItem foodItem2 = new FoodItem("Dans läsk", 15);
     	
     	try {
 			cessna.addPassenger(passenger);
@@ -124,6 +124,8 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
+    	System.out.println(cessna.toString());
     	
     	//SystemUI ui = new SystemUI();
     	//Ticket ticket = ui.newBusinessTicket();
@@ -144,12 +146,10 @@ public class Main {
 //			e.printStackTrace();
 //		}
     	
-    	System.out.println(cessna.toString());
-    	//System.out.println(ticket.toString());  	
+//    	System.out.println(ticket.toString());  	
     	
     	//String ticketToString = ticket.toString();
-    	//System.out.println(ticketToString);
-    	
+
     	//Ticket ticket = new Ticket(new Passenger("Dan", PassengerType.BUSINESS), new Menu(foodItem, foodItem2), 500000, TicketType.BUSINESS, new Airplane("Dans plan") );
     	//System.out.println(ticket.toString());
 

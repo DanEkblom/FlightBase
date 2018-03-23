@@ -2,6 +2,7 @@ package se.lexicon.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import se.lexicon.exception.NoMoreSeatsException;
 
@@ -100,10 +101,6 @@ public class Airplane {
 		return (currentFreeEconomySeat < 10);
 	}// economySeatsAvailable
 
-	
-	// TODO Sammanfattning av det som finns i flygplanet och som har blivit sålt.
-	// Inklusive den vinst (30%) av totalen som bolaget gör
-	
 	@Override
 	public String toString() {
 
@@ -113,18 +110,37 @@ public class Airplane {
 		sb.append("\nAntal säten: ");
 		sb.append(airplaneSeats.size());
 
-		// Count of booked Business and Economy-seats
+		/* Disadvantage to count this way is that it requires the variables businessSeat
+		 * and economySeat to be declared outside this method as private integers !
+		 *  
+		 * airplaneSeats.stream().filter(s -> s.getSeatNo() != 0).collect(Collectors.toList())
+		 * .forEach(p -> {
+		 *  	if (p.getPassengerType() == PassengerType.BUSINESS) {
+		 *		businessSeats++;
+		 *	} else {
+		 *		economySeats++;
+		 *	}});
+		 */
+			
+		// Creation of a new list that contains only booked passengers 
+		List<Passenger> pList = airplaneSeats.stream().filter(s -> s.getSeatNo() != 0).collect(Collectors.toList());
+		
+		// Count booked Business- and Economy-seats
 		int businessSeats = 0;
 		int economySeats = 0;
-		for (int i = 0; i < airplaneSeats.size(); i++) {
-			if (airplaneSeats.get(i).getSeatNo() != 0) {
-				if (airplaneSeats.get(i).getPassengerType() == PassengerType.BUSINESS) {
-					businessSeats++;
-				} else {
-					economySeats++;
-				}
+		StringBuilder passengerSummary = new StringBuilder("");
+		
+		for (int i = 0; i < pList.size(); i++) {
+			if (pList.get(i).getPassengerType() == PassengerType.BUSINESS) {
+				businessSeats++;
+			} else {
+				economySeats++;
 			}
+			
+			passengerSummary.append("\n\n");
+			passengerSummary.append(pList.get(i).toString());
 		}
+		
 		if (businessSeats + economySeats == 0) {
 			sb.append("\nBokningar: saknas");
 		} else {
@@ -138,10 +154,7 @@ public class Airplane {
 			}
 		}
 		
-		//Skapa en lista på alla bokade passagerare:
-		// Kanske använda toString för Ticket-instanserna
-		// Räkna samtidigt ihop samtliga inkomster och
-		// i slutet sammanfatta som totalinkomst resp. totalvinst (30%)
+		sb.append(passengerSummary.toString());
 
 		return sb.toString();
 	}

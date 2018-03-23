@@ -20,7 +20,6 @@ public class Passenger {
 	private String note;
 	private String foodAllergies; // GLUTEN, LACTOS, NUTS, ETC.
 	
-	
 	private static int prevPassengerId;
 
 	// Constructor of all properties
@@ -173,30 +172,30 @@ public class Passenger {
 		s.append(passengerId);
 		
 		if (!passportNumber.equals("")){
-			s.append("/nPassnummer: ");
+			s.append("\nPassnummer: ");
 			s.append(passportNumber);			
 		}
 		
 		if (age != 0) {
-			s.append("/nÅlder: ");
+			s.append("\nÅlder: ");
 			s.append(age);
 		}
 		
-		s.append("/nKön: ");
+		s.append("\nKön: ");
 		s.append(Utilities.genderToSwedish(gender, false));
 		
 		if (!fellowPassenger.equals("")) {
-			s.append("/nMedpassagerare: ");
+			s.append("\nMedpassagerare: ");
 			s.append(fellowPassenger);
 		}
 		
 		if (!foodAllergies.equals("")) {
-			s.append("/nMatallergier: ");
+			s.append("\nMatallergier: ");
 			s.append(foodAllergies);
 		}
 		
 		if (!note.equals("")) {
-			s.append("/nNote: ");
+			s.append("\nNote: ");
 			s.append(note);
 		}
 

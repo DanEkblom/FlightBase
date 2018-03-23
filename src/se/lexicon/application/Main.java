@@ -109,12 +109,21 @@ public class Main {
     	//Ticket ticket = oz.newBusinessTicket();
   
     	Airplane cessna = new Airplane("Cessna320");
-    	System.out.println(cessna.toString());
-    	
-    	
-    	Passenger passenger = new Passenger("Dan", PassengerType.ECONOMY);
+ 	
+    	Passenger passenger = new Passenger("Dan", PassengerType.BUSINESS);
+    	Passenger passenger2 = new Passenger("Pekka", PassengerType.ECONOMY);
+    	Passenger passenger3 = new Passenger("Özgür", PassengerType.ECONOMY);
     	FoodItem foodItem = new FoodItem("Dans favorit", 45);
     	FoodItem foodItem2 = new FoodItem("Dans läsk", 15);
+    	
+    	try {
+			cessna.addPassenger(passenger);
+			cessna.addPassenger(passenger2);
+			cessna.addPassenger(passenger3);
+		} catch (NoMoreSeatsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     	//SystemUI ui = new SystemUI();
     	//Ticket ticket = ui.newBusinessTicket();
@@ -124,17 +133,19 @@ public class Main {
     	//String ticketToString = ticket.toString();
     	//System.out.println(ticketToString);
     	
-    	Ticket ticket = null;
-		try {
-			ticket = new Ticket(new Passenger("Dan", PassengerType.ECONOMY),
-					new Menu(foodItem, foodItem2),
-					5000, TicketType.ECONOMY, new Airplane("Dans plan") );
-		} catch (NoMoreSeatsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//    	Ticket ticket = null;
+//		try {
+//			ticket = new Ticket(new Passenger("Dan", PassengerType.ECONOMY),
+//					new Menu(foodItem, foodItem2),
+//					5000, TicketType.ECONOMY, new Airplane("Dans plan") );
+//			
+//		} catch (NoMoreSeatsException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
     	
-    	System.out.println(ticket.toString());  	
+    	System.out.println(cessna.toString());
+    	//System.out.println(ticket.toString());  	
     	
     	//String ticketToString = ticket.toString();
     	//System.out.println(ticketToString);

@@ -16,16 +16,19 @@ public class Ticket {
 	
 	private static int allTicketNumbers = 0;
 	
-	public final static int BusinessTicket = 20000;
-	public final static int EconomyTicket = 5000;
+	public final static int BUSINESSTICKET = 20000;
+	public final static int ECONOMYTICKET = 5000;
 
-	public Ticket(Passenger passenger, Menu menu, int price, TicketType ticketType, Airplane airplane) throws NoMoreSeatsException {
+	public Ticket(Passenger passenger, Menu menu, int price, TicketType ticketType, Airplane airplane) {
 		this.passenger = passenger;
 		this.menu = menu;
 		this.price = price;
 		this.ticketType = ticketType;
 		ticketNumber = ++allTicketNumbers;
+
 		airplane.addPassenger(passenger);
+
+		System.out.println(this.toString() );
 	}
 
 	/**
@@ -75,11 +78,11 @@ public class Ticket {
 		if (ticketType.equals(TicketType.BUSINESS)) {
 			sb.append(menu.menuItems());
 			sb.append("\n\nTotalkostnad: ");
-			sb.append(BusinessTicket);
+			sb.append(BUSINESSTICKET);
 		}else {
 			sb.append(menu.toString());
 			sb.append("\n\nTotalkostnad: ");
-			sb.append(menu.totalFoodCost(menu) + EconomyTicket);
+			sb.append(menu.totalFoodCost(menu) + ECONOMYTICKET);
 		}
 		sb.append(" kr");
 

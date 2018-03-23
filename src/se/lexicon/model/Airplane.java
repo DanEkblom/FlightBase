@@ -76,22 +76,26 @@ public class Airplane {
 		this.airplaneSeats = airplaneSeats;
 	}
 
-	public void addPassenger(Passenger passenger) throws NoMoreSeatsException {
-		if (businessSeatsAvailable() && passenger.getPassengerType() == PassengerType.BUSINESS) {
+	public void addPassenger(Passenger passenger){
+
+		if (passenger.getPassengerType() == PassengerType.BUSINESS) {
 			passenger.setSeat(currentFreeBusinessSeat + 1);
 			airplaneSeats.add(currentFreeBusinessSeat, passenger);
 			airplaneSeats.remove(++currentFreeBusinessSeat);
-		} else if (economySeatsAvailable() && passenger.getPassengerType() == PassengerType.ECONOMY) {
+		}
+		else {
 			passenger.setSeat(currentFreeEconomySeat + 1);
 			airplaneSeats.add(currentFreeEconomySeat++, passenger);
+
 			airplaneSeats.remove(10);
 		}
 
-		else
-			throw new NoMoreSeatsException();
-
 	}// addPassenger
 
+	public boolean seatsAvailable(){
+		return ( businessSeatsAvailable() || economySeatsAvailable() );
+			
+	}
 	public boolean businessSeatsAvailable() {
 		return (currentFreeBusinessSeat < 5);
 	}
@@ -100,10 +104,6 @@ public class Airplane {
 		return (currentFreeEconomySeat < 10);
 	}// economySeatsAvailable
 
-	
-	// TODO Sammanfattning av det som finns i flygplanet och som har blivit sålt.
-	// Inklusive den vinst (30%) av totalen som bolaget gör
-	
 	@Override
 	public String toString() {
 
@@ -137,7 +137,7 @@ public class Airplane {
 				sb.append(economySeats);
 			}
 		}
-		
+
 		//Skapa en lista på alla bokade passagerare:
 		// Kanske använda toString för Ticket-instanserna
 		// Räkna samtidigt ihop samtliga inkomster och

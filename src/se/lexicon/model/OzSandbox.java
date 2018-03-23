@@ -44,6 +44,7 @@ public class OzSandbox {
 							+ "1: Flyga Business Class\n"
 							+ "2: Flyga Economy class\n"
 							+ "3: Lista alla passagerare\n"
+							+ "4: Visa summan av Vida Vingar AB:s bruttointäkter\n"
 							+ "0: Avsluta");
 
 					option = scanner.nextLine();
@@ -57,6 +58,7 @@ public class OzSandbox {
 						System.out.println("Du har valt Business Class");
 						if( airplane.businessSeatsAvailable() ){
 							tickets.add( newBusinessTicket() );
+
 							//TODO: gör en snygg lista som visar vad kunden har valt som
 							//han kan bekräfta
 
@@ -82,18 +84,23 @@ public class OzSandbox {
 
 					case "3":
 						printPassengers(airplane);
+						break;
+
+					case "4":
+						printSumRevenue();
+						break;
+
 					default:
 						System.out.println(option + " är ett ogiltigt val. Var god försök igen.");
 
 					}
+
 
 				} catch (Exception e) {
 					System.out.println("Exception caught in inner try : " + e.getMessage());
 					e.printStackTrace();
 
 				}//catch
-
-
 
 
 			} while (isRunning);
@@ -230,83 +237,77 @@ public class OzSandbox {
 
 
 	public Passenger newPassenger() {
-		if( airplane.businessSeatsAvailable() || airplane.economySeatsAvailable()) {
+		System.out.println("Vänligen ange namn:");
+		name = scanner.nextLine();
 
-			System.out.println("Vänligen ange namn:");
-			name = scanner.nextLine();
-
-			if (option.trim().equals(ECONOMY) )
-				if( airplane.economySeatsAvailable()) {
-					return new Passenger(name, PassengerType.ECONOMY); 
-				}
-				else {
-					offerOtherTicket(BUSINESS);
-				}
-			if (option.trim().equals(BUSINESS) ) {
-				if( airplane.businessSeatsAvailable()) {
-					return new Passenger(name, PassengerType.BUSINESS); 
-				}
-				else {
-					offerOtherTicket(BUSINESS);
-				}
-			}
-		}
-		return null;
+		if (option.trim().equals(ECONOMY) )
+			return new Passenger(name, PassengerType.ECONOMY); 
+		
+		else return new Passenger(name, PassengerType.BUSINESS); 
+		
 	}
 
-	public Ticket newBusinessTicket(){
-		try {
-			return new Ticket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) , 20000, TicketType.BUSINESS, airplane);
-		}
-		catch (NoMoreSeatsException e){
-			offerOtherTicket(ECONOMY);
-		}
-		return null;
+
+	public Ticket newBusinessTicket() {
+
+		return new Ticket(newPassenger(), new Menu(pickBusinessFood(), pickBusinessBeverage() ) , 20000, TicketType.BUSINESS, airplane);
 	}
+
 
 	public Ticket newEconomyTicket(){
-		try {
-			return new Ticket(newPassenger(), new Menu(pickEconomyFood(), pickEconomyBeverage() ) , 5000, TicketType.ECONOMY, airplane);
-		}
-		catch( NoMoreSeatsException e) {
-			offerOtherTicket(BUSINESS);
-		}
-		return null;
+		return new Ticket(newPassenger(), new Menu(pickEconomyFood(), pickEconomyBeverage() ) , 5000, TicketType.ECONOMY, airplane);
+
 	}
 
 	public void offerOtherTicket(String ticketType) {
-
-		if(ticketType.equals(BUSINESS)) {
-			System.out.println("Vi har tyvärr inga platser kvar i economy class.\n"
-					+ "Vill du istället köpa en biljett i business class? Det kostar bara fyra gånger så mycket.(j/n)");
-			option = scanner.nextLine();
-
-			if(option.equals("j")) {
-				tickets.add(newBusinessTicket());
-			}
-			else if(option.equals("n")) {
-				System.out.println("Vad tråkigt att höra. Glöm inte att ta del av alla heta erbjudanden vi kommer att spamma din mail med.");
-			}
+		if(!airplane.seatsAvailable()){
+			System.out.println("\nPlanet är fullt, boarding börjar om 30 minuter.\n");
 		}
 		else {
-			System.out.println("Vi har tyvärr inga platser kvar i business class. Vill du istället köpa en biljett i economy class?\n"
-					+ "Sätena är lite hårdare och trängre, och film kan du glömma, men det kostar bara 5000 kr.(j/n)");
-			option = scanner.nextLine();
 
-			if(option.equals("j")) {
-				tickets.add(newEconomyTicket());
+			if(ticketType.equals(BUSINESS)) {
+				System.out.println("Vi har tyvärr inga platser kvar i economy class.\n"
+						+ "Vill du istället köpa en biljett i business class? Det kostar bara fyra gånger så mycket.(j/n)");
+				option = scanner.nextLine();
+
+				if(option.equals("j")) {
+					option = BUSINESS;
+					tickets.add(newBusinessTicket());
+				}
+				else if(option.equals("n")) {
+					System.out.println("Vad tråkigt att höra. Glöm inte att ta del av alla heta erbjudanden vi kommer att spamma din mail med.");
+				}
 			}
-			else if(option.equals("n")) {
-				System.out.println("Vad tråkigt att höra. Glöm inte att ta del av alla heta erbjudanden vi kommer att spamma din mail med.");
+
+			else {
+				System.out.println("Vi har tyvärr inga platser kvar i business class. Vill du istället köpa en biljett i economy class?\n"
+						+ "Sätena är lite hårdare och trängre, och film kan du glömma, men det kostar bara 5000 kr.(j/n)");
+				option = scanner.nextLine();
+
+				if(option.equals("j")) {
+					option = ECONOMY;
+					tickets.add(newEconomyTicket());
+				}
+				else if(option.equals("n")) {
+					System.out.println("Vad tråkigt att höra. Glöm inte att ta del av alla heta erbjudanden vi kommer att spamma din mail med.");
+				}
 			}
+		}
+	}//offerOtherTicket
+
+	public void printPassengers(Airplane airplane) {
+		for(Passenger p : airplane.getAirplaneSeats()) {
+			System.out.println("Säte "+ p.getSeatNo() +" : " + p.getName());
 		}
 
 	}
 
-	public void printPassengers(Airplane airplane) {
-		for(Passenger p : airplane.getAirplaneSeats()) {
-			System.out.println(p.getName());
+	public void printSumRevenue() {
+		int sum = 0;
+		for(Ticket t : tickets) {
+			sum += t.getPrice() ;
 		}
-
+		System.out.println(tickets.size() + " biljetter sålda. \nTotal omsättning: $" + sum +
+				"\nVinst: $" + (double)sum * 0.3);
 	}
 }

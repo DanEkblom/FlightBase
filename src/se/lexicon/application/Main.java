@@ -57,9 +57,9 @@ public class Main {
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
     	System.out.println(airForceOne.addPassenger(new BusinessPassenger("Stefan")));
-    	
+*/    	
     	new OzSandbox().start();
-*/
+
 
     	
 //    	if (!cessna.businessSeatsAvailable() && !cessna.economySeatsAvailable()) {
@@ -102,7 +102,7 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		};
-    	*/
+    	
     	//SystemUI ui = new SystemUI();
     	//Ticket ticket = ui.newBusinessTicket();
     	//                                              new OzSandbox().start();
@@ -134,7 +134,7 @@ public class Main {
     	  	
     	//String ticketToString = ticket.toString();
     	//System.out.println(ticketToString);
-    	
+    	*/
 //    	Ticket ticket = null;
 //		try {
 //			ticket = new Ticket(new Passenger("Dan", PassengerType.ECONOMY),
@@ -153,6 +153,6 @@ public class Main {
     	//Ticket ticket = new Ticket(new Passenger("Dan", PassengerType.BUSINESS), new Menu(foodItem, foodItem2), 500000, TicketType.BUSINESS, new Airplane("Dans plan") );
     	//System.out.println(ticket.toString());
 
-    	
+    	new OzSandbox().start();
     }
 }
